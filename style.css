@@ -1,0 +1,23 @@
+#main {
+text-align: center; 
+background-image: url(images/background.jpeg);
+background-size: 100% 100%;
+background-attachment: fixed;
+background-repeat: no-repeat;
+color: white;
+}
+
+.imagen {
+    background-size: 100% 100%;
+    background-attachment: scroll;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    border-style: dotted;
+    border-width: 3px;
+    border-color: black;
+}
+
+.texto {
+    margin-top: 30px; 
+    background-color: rgba(0, 0, 0, 0.7);
+}
