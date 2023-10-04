@@ -1,5 +1,3 @@
-#bg-entrantes {
-    background-image: url(images\Pan de Cristal Crujiente con Queso Burrata y Tomate Seco.jpg/background.png);
-    background-size: cover;
+.transparent-bg {
     opacity: 0.3;
 }
