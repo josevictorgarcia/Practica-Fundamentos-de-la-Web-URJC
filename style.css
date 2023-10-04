@@ -7,6 +7,10 @@
     color: white;
 }
 
+body {
+    background-color: rgb(255, 255, 255);
+}
+
 .imagen {
     background-size: 100% 100%;
     background-attachment: scroll;
@@ -20,4 +24,8 @@
 .texto {
     margin-top: 30px;
     background-color: rgba(0, 0, 0, 0.7);
+}
+
+.transparent-bg {
+    opacity: 0.3;
 }
