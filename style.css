@@ -37,3 +37,8 @@ body {
 .dropdown-menu {
     width: fit-content
 }
+
+.texto_main_carousel {
+    background-color: rgba(0, 0, 0, 0.55);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
