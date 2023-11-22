@@ -6,32 +6,40 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"> </script>
     </head>
 
-    <body>
-        
-        <div class="container">
-            <div class="col-md-12" style="text-align: center;">
-                <h1 class="display-1">CREAR PLATO NUEVO</h1>
-            </div>
-            <form>
-                <div class="form-group" style="margin-top: 20px;">
-                    <label>Nombre</label>
-                    <input type="text" class="form-control" placeholder="Escriba el nombre del plato">
-                </div>
-                <div class="form-group" style="margin-top: 20px;">
-                    <label>URL</label>
-                    <input type="text" class="form-control" placeholder="URL de la imagen a mostrar">
-                </div>
-                <div class="form-group" style="margin-top: 20px;">
-                    <label>Ingredientes</label>
-                    <textarea class="form-control" rows="3"></textarea>
-                </div>
-                <div class="form-group" style="margin-top: 20px;">
-                    <label>Descripción</label>
-                    <textarea class="form-control" rows="3"></textarea>
-                </div>
-                <button type="submit" class="btn btn-success" style="margin-top: 20px;">Guardar</button>
-                <a role="button" class="btn btn-danger" href="index.html" style="margin-top: 20px;">Cancelar</a>
-            </form>
+<body>
+    <div class="container">
+        <div class="col-md-12" style="text-align: center;">
+            <h1 class="display-1">CREAR PLATO NUEVO</h1>
         </div>
-    </body>
+        <form>
+            <div class="form-group" style="margin-top: 20px;">
+                <label>Nombre</label>
+                <input type="text" class="form-control" placeholder="Escriba el nombre del plato">
+            </div>
+            <div class="form-group" style="margin-top: 20px;">
+                <label>URL</label>
+                <input type="text" class="form-control" placeholder="URL de la imagen a mostrar">
+            </div>
+            <div class="form-group" style="margin-top: 20px;">
+                <label>Ingredientes</label>
+                <textarea class="form-control" rows="3"></textarea>
+            </div>
+            <div class="form-check form-check-inline" style="margin-top: 20px;">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                <label class="form-check-label" for="inlineCheckbox1">Vegetariana</label>
+            </div>
+            <div class="form-check form-check-inline" style="margin-top: 20px;">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                <label class="form-check-label" for="inlineCheckbox2">Celiacos</label>
+            </div>
+            <div class="form-group" style="margin-top: 20px;">
+                <label>Descripción</label>
+                <textarea class="form-control" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-success" style="margin-top: 20px;">Guardar</button>
+            <a role="button" class="btn btn-danger" href="pizza.html" style="margin-top: 20px;">Cancelar</a>
+        </form>
+    </div>
+</body>
+
 </html>
