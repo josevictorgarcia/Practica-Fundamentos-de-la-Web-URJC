@@ -6,13 +6,14 @@ let i=0;
 
 router.get('/', (req, res) => {                         //router.get(ruta donde se va a imprimir la pagina html, funcion con el nombre de la pagina a modificar y que modifica la misma)
     res.render('index', {
-        pizzas: elementos.getElems()
+        pizze_rosse_head: "",
+        pizze_rosse: elementos.getElemsCategoria("Rosse")
     })
 })
 
 router.post('/new', (req, res) => {
     res.render('new', {
-
+        
     })
 })
 
