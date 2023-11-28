@@ -4,7 +4,7 @@ const elems = new Map()
 let id=0;
 
 export function addElem(elem){
-    let e = new elemento.Elemento(elem.nombre, elem.url, elem.ingredientes, elem.descripcion, elem.vegetariano, elem.celiaco, id);
+    let e = new elemento.Elemento(id, elem.nombre, elem.url, elem.ingredientes, elem.alergenos, elem.categoria);
     elems.set(id, e);
     id++;
 }
