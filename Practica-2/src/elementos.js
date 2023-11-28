@@ -9,16 +9,24 @@ export function addElem(elem){
     id++;
 }
 
+function compareNames(a, b){
+    if (a.getNombre() < b.getNombre()) {
+        return -1;
+      } else if (a.getNombre() > b.getNombre()) {
+        return 1;
+      }
+      return 0;
+}
+
 export function getElems(){
-    return [...elems.values()]
+    return [...elems.values()].sort(compareNames)
+}
+
+export function getElemsCategoria(categoria){
+    getElems().filter((elem) => elem.getCategoria() === categoria)
 }
 
 export function getElem(id){
     return elems.get(id);
 }
 
-//let e = new elemento.Elemento('antonio', 'url', 'ingredientes', 'descripcion', true, false, id)
-//console.log(elems.size)
-//addElem(e)
-//console.log(elems.size)
-//console.log([...elems.values(0)])
