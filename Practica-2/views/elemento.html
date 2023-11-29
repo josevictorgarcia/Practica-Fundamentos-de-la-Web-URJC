@@ -11,20 +11,22 @@
     {{#post}}
     <div class="container" style="text-align: center; margin-top: 20px;">
         <div class="row">
-            <p class="display-1 lead">4 Formaggio</p>
+            <p class="display-1 lead">{{nombre}}</p>
         </div>
         <div class="row">
             <img class="col-md-4" src="{{url}}">
             <div class="col-md-8">
                 <div class="container">
                     <div class="row">
-                        <p style="">Salsa de tomate y nuestra mezcla especial de cuatro quesos.</p>
+                        <p class="display-6">{{ingredientes}}</p>
                     </div>
                 </div>
                 <div class="row">
                     <h4>Alérgenos</h4>
+                    {{#alergenos}}
                     <img class="col-md-3 col-4"
-                        src="https://cdn.icon-icons.com/icons2/852/PNG/512/IconoAlergenoGluten-Gluten_icon-icons.com_67600.png">
+                        src="{{.}}">
+                    {{/alergenos}}
                 </div>
             </div>
         </div>

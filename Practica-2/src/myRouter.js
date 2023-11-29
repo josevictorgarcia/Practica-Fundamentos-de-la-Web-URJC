@@ -14,9 +14,9 @@ router.get('/', (req, res) => {                         //router.get(ruta donde 
 })
 
 router.post('/new', (req, res) => {
-    let {nombre, url, ingredientes, vegetariano, celiaco, descripcion} = req.body
-    elementos.addElem({nombre: nombre, url:url, ingredientes:ingredientes, vegetariano:vegetariano, celiaco:celiaco, descripcion:descripcion, id:id})
-    id++
+    let {nombre, url, ingredientes, alergenos, categoria} = req.body
+    elementos.addElem({id:this.id, nombre: nombre, url:url, ingredientes:ingredientes, alergenos:alergenos, categoria:categoria})
+    this.id++
     //console.log(id)
     //console.log(elementos.getElemsSize())
     res.render('new', {
