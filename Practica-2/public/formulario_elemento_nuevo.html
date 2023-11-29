@@ -26,19 +26,25 @@
                 <textarea class="form-control" name="ingredientes" rows="3"></textarea>
             </div>
             <div class="form-check form-check-inline" style="margin-top: 20px;">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                <label class="form-check-label" name="vegetariano" for="inlineCheckbox1">Vegetariana</label>
+                <input class="form-check-input" type="checkbox" value="option1">
+                <label class="form-check-label">Vegetariana</label>
             </div>
             <div class="form-check form-check-inline" style="margin-top: 20px;">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                <label class="form-check-label" name="celiaco" for="inlineCheckbox2">Celiacos</label>
+                <input class="form-check-input" type="checkbox" value="option2">
+                <label class="form-check-label">Celiacos</label>
             </div>
             <div class="form-group" style="margin-top: 20px;">
-                <label>Descripción</label>
-                <textarea class="form-control" name="descripcion" rows="3"></textarea>
+                <label>Categoría</label>
+                <select class="form-select">
+                  <option selected>Elige una categoría...</option>
+                  <option value="1">Pizze Rosse</option>
+                  <option value="2">Pizze Bianca</option>
+                </select>
+              </div>
+            <div>
+                <button type="submit" class="btn btn-success" style="margin-top: 20px;">Guardar</button>
+                <a role="button" class="btn btn-danger" href="/" style="margin-top: 20px;">Cancelar</a>
             </div>
-            <button type="submit" class="btn btn-success" style="margin-top: 20px;">Guardar</button>
-            <a role="button" class="btn btn-danger" href="/" style="margin-top: 20px;">Cancelar</a>
         </form>
     </div>
 </body>

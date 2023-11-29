@@ -1,13 +1,16 @@
 export class Elemento {
 
-    constructor(nombre, url, ingredientes, descripcion, vegetariano, celiaco, id){
+    constructor(id, nombre, url, ingredientes, alergenos, categoria){
+        this.id=id;
         this.nombre=nombre;
         this.url=url;
-        this.descripcion=descripcion;
         this.ingredientes=ingredientes;
-        this.vegetariano=vegetariano;
-        this.celiaco=celiaco;
-        this.id=id;
+        this.alergenos=alergenos;
+        this.categoria = categoria;
+    }
+
+    getId(){
+        return this.id;
     }
 
     getNombre(){
@@ -26,16 +29,12 @@ export class Elemento {
         return this.ingredientes;
     }
 
-    getVegetariano(){
-        return this.vegetariano;
+    getAlergenos(){
+        return this.alergenos;
     }
 
-    getCeliaco(){
-        return this.celiaco;
-    }
-
-    getId(){
-        return this.id;
+    getCategoria(){
+        return this.categoria;
     }
 }
 
