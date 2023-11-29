@@ -12,30 +12,30 @@
         <div class="col-md-12" style="text-align: center;">
             <h1 class="display-1">CREAR PLATO NUEVO</h1>
         </div>
-        <form action="/new" method="post">
+        <form action="new" method="post">
             <div class="form-group" style="margin-top: 20px;">
                 <label>Nombre</label>
-                <input type="text" class="form-control" placeholder="Escriba el nombre del plato">
+                <input type="text" name="nombre" class="form-control" placeholder="Escriba el nombre del plato">
             </div>
             <div class="form-group" style="margin-top: 20px;">
                 <label>URL</label>
-                <input type="text" class="form-control" placeholder="URL de la imagen a mostrar">
+                <input type="text" name="url" class="form-control" placeholder="URL de la imagen a mostrar">
             </div>
             <div class="form-group" style="margin-top: 20px;">
                 <label>Ingredientes</label>
-                <textarea class="form-control" rows="3"></textarea>
+                <textarea class="form-control" name="ingredientes" rows="3"></textarea>
             </div>
             <div class="form-check form-check-inline" style="margin-top: 20px;">
                 <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                <label class="form-check-label" for="inlineCheckbox1">Vegetariana</label>
+                <label class="form-check-label" name="vegetariano" for="inlineCheckbox1">Vegetariana</label>
             </div>
             <div class="form-check form-check-inline" style="margin-top: 20px;">
                 <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                <label class="form-check-label" for="inlineCheckbox2">Celiacos</label>
+                <label class="form-check-label" name="celiaco" for="inlineCheckbox2">Celiacos</label>
             </div>
             <div class="form-group" style="margin-top: 20px;">
                 <label>Descripción</label>
-                <textarea class="form-control" rows="3"></textarea>
+                <textarea class="form-control" name="descripcion" rows="3"></textarea>
             </div>
             <button type="submit" class="btn btn-success" style="margin-top: 20px;">Guardar</button>
             <a role="button" class="btn btn-danger" href="/" style="margin-top: 20px;">Cancelar</a>

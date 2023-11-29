@@ -214,11 +214,25 @@
                             </div>
                         </div>
                     </div>
+                    {{#pizzas}}
+                    <div class="col">
+                        <div class="card text-center border-dark h-100">
+                            <img class="card-img h-100"
+                                src="{{url}}">
+                            <div class="card-text">
+                                <h4>{{nombre}}</h4>
+                                <a href="{{id}}" class="stretched-link"></a>
+                            </div>
+                        </div>
+                    </div>
+                    {{/pizzas}}
+                    {{^pizzas}}
+                    {{/pizzas}}
                 </div>
             </div>
             <div class="container">
                 <div class="row">
-                    <a role="button" class="btn btn-primary" style="margin-top: 20px; margin-bottom: 20px;"
+                    <a role="button" class="btn btn-secondary" style="margin-top: 20px; margin-bottom: 20px;"
                         href="formulario_elemento_nuevo.html">Crear nuevo
                         elemento</a>
                 </div>
