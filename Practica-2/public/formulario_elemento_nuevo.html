@@ -12,18 +12,18 @@
         <div class="col-md-12" style="text-align: center;">
             <h1 class="display-1">CREAR PLATO NUEVO</h1>
         </div>
-        <form action="/new" method="post">
+        <form action="new" method="post">
             <div class="form-group" style="margin-top: 20px;">
                 <label>Nombre</label>
-                <input type="text" class="form-control" placeholder="Escriba el nombre del plato">
+                <input type="text" name="nombre" class="form-control" placeholder="Escriba el nombre del plato">
             </div>
             <div class="form-group" style="margin-top: 20px;">
                 <label>URL</label>
-                <input type="text" class="form-control" placeholder="URL de la imagen a mostrar">
+                <input type="text" name="url" class="form-control" placeholder="URL de la imagen a mostrar">
             </div>
             <div class="form-group" style="margin-top: 20px;">
                 <label>Ingredientes</label>
-                <textarea class="form-control" rows="3"></textarea>
+                <textarea class="form-control" name="ingredientes" rows="3"></textarea>
             </div>
             <div class="form-check form-check-inline" style="margin-top: 20px;">
                 <input class="form-check-input" type="checkbox" value="option1">

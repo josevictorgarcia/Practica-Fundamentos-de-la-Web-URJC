@@ -214,6 +214,20 @@
                             </div>
                         </div>
                     </div>
+                    {{#pizzas}}
+                    <div class="col">
+                        <div class="card text-center border-dark h-100">
+                            <img class="card-img h-100"
+                                src="{{url}}">
+                            <div class="card-text">
+                                <h4>{{nombre}}</h4>
+                                <a href="{{id}}" class="stretched-link"></a>
+                            </div>
+                        </div>
+                    </div>
+                    {{/pizzas}}
+                    {{^pizzas}}
+                    {{/pizzas}}
                 </div>
             </div>
             <div class="container">
