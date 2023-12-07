@@ -23,27 +23,28 @@
                 </div>
                 <div class="row">
                     <h4>Alérgenos</h4>
-                    {{#post.alergenos}}
+                    {{#alergenos}}
                     <img class="col-md-3 col-4"
                         src="{{.}}">
-                    {{/post.alergenos}}
-                    {{^post.alergenos}}
+                    {{/alergenos}}
+                    {{^alergenos}}
                     <h4>No hay alergenos que mostrar</h4>
-                    {{/post.alergenos}}
+                    {{/alergenos}}
                 </div>
             </div>
         </div>
     </div>
-    {{/post}}
     </div>
     <div class="container" style="margin-top: 20px; margin-bottom: 20px;">
         <div class="row">
             <div class="col-12">
-                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                    <button type="button" class="btn btn-danger">Borrar</button>
-                    <button type="button" class="btn btn-primary">Editar</button>
-                    <a role="button" class="btn btn-success" href="/">Más pizzas</a>
-                </div>
+                <form action="{{id}}/edit">
+                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                        <button type="submit" class="btn btn-danger" formaction="{{id}}/delete">Borrar</button>
+                        <button type="submit" class="btn btn-primary">Editar</button>
+                        <a role="button" class="btn btn-success" href="/">Más pizzas</a>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -68,6 +69,7 @@
                 <button type="button" class="btn btn-primary">Publish</button>
             </div>
         </form>
+        {{/post}}
         <!--Ejemplo sublemento-->
         <div class="col-md-12"
             style="margin-top: 30px; border-top-style: double; border-bottom-style: double; text-align: justify;">

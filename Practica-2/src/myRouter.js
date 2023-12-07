@@ -17,6 +17,7 @@ router.get('/', (req, res) => {                         //router.get(ruta donde 
 router.post('/new', (req, res) => {
     let {gluten, huevos, pescado, fcascara} = req.body
     let alergenos = [gluten, huevos, pescado, fcascara]
+    alergenos = alergenos.filter((elem) => elem!=undefined)
     let {nombre, url, ingredientes, categoria} = req.body
     let isRosse = (categoria === 'true')
     elementos.addElem({id:id, nombre: nombre, url:url, ingredientes:ingredientes, alergenos:alergenos, isRosse:isRosse})
@@ -33,6 +34,13 @@ router.get('/:id', (req, res) => {
     console.log(post)
     res.render('elemento', {
         post
+    })
+})
+
+router.get('/:id/delete', (req, res) => {
+    elementos.remove(parseInt(req.params.id))
+    res.render('deleted', {
+
     })
 })
 

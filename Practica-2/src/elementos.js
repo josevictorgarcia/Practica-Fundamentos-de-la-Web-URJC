@@ -34,6 +34,10 @@ export function getElemsSize(){
     return elems.size;
 }
 
+export function remove(id){
+    elems.delete(id);
+}
+
 export function getElem(id){
     return elems.get(id);
 }
