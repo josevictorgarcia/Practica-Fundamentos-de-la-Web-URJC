@@ -8,15 +8,18 @@ const router = express.Router();
 
 router.get('/', (req, res) => {                         //router.get(ruta donde se va a imprimir la pagina html, funcion con el nombre de la pagina a modificar y que modifica la misma)
     res.render('index', {
-        pizze_rosse_head: "",
-        pizze_rosse: elementos.getElemsCategoria("Rosse")
+        pizzas:elementos.getElems()
+        //pizze_rosse_head: "",
+        //pizze_rosse: elementos.getElemsCategoria("Rosse")
     })
 })
 
 router.post('/new', (req, res) => {
-    let {nombre, url, ingredientes, alergenos, categoria} = req.body
-    elementos.addElem({id:this.id, nombre: nombre, url:url, ingredientes:ingredientes, alergenos:alergenos, categoria:categoria})
-    this.id++
+    let {gluten, huevos, pescado, fcascara} = req.body
+    let alergenos = [gluten, huevos, pescado, fcascara]
+    let {nombre, url, ingredientes, categoria} = req.body
+    elementos.addElem({id:id, nombre: nombre, url:url, ingredientes:ingredientes, alergenos:alergenos, categoria:categoria})
+    id++
     //console.log(id)
     //console.log(elementos.getElemsSize())
     res.render('new', {
@@ -27,7 +30,9 @@ router.post('/new', (req, res) => {
 router.get('/:id', (req, res) => {
     let post = elementos.getElem(parseInt(req.params.id))
     console.log(post)
-    res.render('elemento', {post})
+    res.render('elemento', {
+        post
+    })
 })
 
 //elementos.addElem({nombre: 'javier', url:'https://images.unsplash.com/photo-1628840042765-356cda07504e?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTh8fHxlbnwwfHx8fHw%3D', ingredientes:'abcd efgh ijk', descripcion:'hola, soy comida', vegetariano: 'a', celiaco: 'c', id:id})

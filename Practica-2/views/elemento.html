@@ -23,10 +23,13 @@
                 </div>
                 <div class="row">
                     <h4>Alérgenos</h4>
-                    {{#alergenos}}
+                    {{#post.alergenos}}
                     <img class="col-md-3 col-4"
                         src="{{.}}">
-                    {{/alergenos}}
+                    {{/post.alergenos}}
+                    {{^post.alergenos}}
+                    <h4>No hay alergenos que mostrar</h4>
+                    {{/post.alergenos}}
                 </div>
             </div>
         </div>

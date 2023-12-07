@@ -5,7 +5,7 @@ const elems = new Map()
 
 export function addElem(elem){
     //let e = new elemento.Elemento(id, elem.nombre, elem.url, elem.ingredientes, elem.alergenos, elem.categoria);
-    elems.set(id, e);
+    elems.set(elem.id, elem);
     //id++;
 }
 
@@ -19,12 +19,16 @@ function compareNames(a, b){
 }
 
 export function getElems(){
-    return [...elems.values()].sort(compareNames)
+    return [...elems.values()]
 }
 
-export function getElemsCategoria(categoria){
-    getElems().filter((elem) => elem.getCategoria() === categoria)
-}
+//export function getElems(){
+//    return [...elems.values()].sort(compareNames)
+//}
+
+//export function getElemsCategoria(categoria){
+//    getElems().filter((elem) => elem.getCategoria() === categoria)
+//}
 
 export function getElemsSize(){
     return elems.size;
