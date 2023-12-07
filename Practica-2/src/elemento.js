@@ -6,7 +6,7 @@ export class Elemento {
         this.url=url;
         this.ingredientes=ingredientes;
         this.alergenos=alergenos;
-        this.categoria = categoria;
+        this.categoria = categoria;         //Categoria = isRosse (Si es pizza rosse, se pone a true, si es bianca se pone a false)
     }
 
     getId(){

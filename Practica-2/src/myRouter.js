@@ -1,6 +1,6 @@
 import express from "express";                          //Los import que no se usen no hace falta incluirlos aunque uno dependa de otro
 import * as elementos from './elementos.js'
-//import * as elemento from './elemento.js'
+import * as elemento from './elemento.js'
 
 let id=0;
 
@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get('/', (req, res) => {                         //router.get(ruta donde se va a imprimir la pagina html, funcion con el nombre de la pagina a modificar y que modifica la misma)
     res.render('index', {
-        pizzas:elementos.getElems()
+        pizzas:elementos.getElems(),
         //pizze_rosse_head: "",
         //pizze_rosse: elementos.getElemsCategoria("Rosse")
     })
@@ -18,7 +18,8 @@ router.post('/new', (req, res) => {
     let {gluten, huevos, pescado, fcascara} = req.body
     let alergenos = [gluten, huevos, pescado, fcascara]
     let {nombre, url, ingredientes, categoria} = req.body
-    elementos.addElem({id:id, nombre: nombre, url:url, ingredientes:ingredientes, alergenos:alergenos, categoria:categoria})
+    let isRosse = (categoria === 'true')
+    elementos.addElem({id:id, nombre: nombre, url:url, ingredientes:ingredientes, alergenos:alergenos, isRosse:isRosse})
     id++
     //console.log(id)
     //console.log(elementos.getElemsSize())
