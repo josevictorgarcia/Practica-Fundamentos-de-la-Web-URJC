@@ -1,4 +1,4 @@
-import * as elemento from './elemento.js';
+//import * as elemento from './elemento.js';
 
 const elems = new Map()
 //let id=0;
