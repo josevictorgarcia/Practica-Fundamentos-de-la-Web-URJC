@@ -52,24 +52,23 @@
         <div class="row-cols-1">
             <h4>Add a review</h4>
         </div>
-        <form class="row g-3">
+        <form class="row g-3" action="/{{id}}" method="post">
             <div class="col-md-6">
                 <label class="form-label">User</label>
-                <input type="user" class="form-control" placeholder="Anonymous User">
+                <input type="user" class="form-control" placeholder="Anonymous User" name="user">
             </div>
             <div class="col-md-6">
                 <label class="form-label">Review Score</label>
-                <input type="score" class="form-control" placeholder="0 - 5 stars">
+                <input type="score" class="form-control" placeholder="0 - 5 stars" name="score">
             </div>
             <div class="col-12">
                 <label class="form-label">Review</label>
-                <textarea type="review" class="form-control" rows="5" placeholder="Your review"></textarea>
+                <textarea type="review" class="form-control" rows="5" placeholder="Your review" name="review"></textarea>
             </div>
             <div class="col-12">
-                <button type="button" class="btn btn-primary">Publish</button>
+                <button type="submit" class="btn btn-primary">Publish</button>
             </div>
         </form>
-        {{/post}}
         <!--Ejemplo sublemento-->
         <div class="col-md-12"
             style="margin-top: 30px; border-top-style: double; border-bottom-style: double; text-align: justify;">
@@ -102,7 +101,26 @@
             </div>
         </div>
         <!--Fin ejemplos subelementos-->
+        <!--Subelementos añadidos-->
+        {{#subelementos}}
+        <div class="col-md-12"
+            style="margin-top: 30px; border-top-style: double; border-bottom-style: double; text-align: justify;">
+            <h4>{{user}}</h4>
+            <h4>
+                {{score}} <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
+                </svg>
+            </h4>
+            <div>
+                {{review}}
+            </div>
+        </div>
+        {{/subelementos}}
+        <!--Fin subelementos añadidos-->
     </div>
+    {{/post}}
 </body>
 
 </html>

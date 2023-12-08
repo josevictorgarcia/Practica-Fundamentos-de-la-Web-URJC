@@ -20,7 +20,7 @@ router.post('/new', (req, res) => {
     alergenos = alergenos.filter((elem) => elem!=undefined)
     let {nombre, url, ingredientes, categoria} = req.body
     let isRosse = (categoria === 'true')
-    elementos.addElem({id:id, nombre: nombre, url:url, ingredientes:ingredientes, alergenos:alergenos, isRosse:isRosse})
+    elementos.addElem({id:id, nombre: nombre, url:url, ingredientes:ingredientes, alergenos:alergenos, isRosse:isRosse, subelementos:[]})
     id++
     //console.log(id)
     //console.log(elementos.getElemsSize())
@@ -68,17 +68,32 @@ router.get('/:id/edit', (req, res) => {
 })
 
 router.post('/:id/:id/modify', (req, res) => {
+    let post = elementos.getElem(parseInt(req.params.id))
     let {gluten, huevos, pescado, fcascara} = req.body
     let alergenos = [gluten, huevos, pescado, fcascara]
     alergenos = alergenos.filter((elem) => elem!=undefined)
     let {nombre, url, ingredientes, categoria} = req.body
     let isRosse = (categoria === 'true')
     console.log({id:parseInt(req.params.id), nombre: nombre, url:url, ingredientes:ingredientes, alergenos:alergenos, isRosse:isRosse})
-    elementos.addElem({id:parseInt(req.params.id), nombre: nombre, url:url, ingredientes:ingredientes, alergenos:alergenos, isRosse:isRosse})
+    elementos.addElem({id:parseInt(req.params.id), nombre: nombre, url:url, ingredientes:ingredientes, alergenos:alergenos, isRosse:isRosse, subelementos:post.subelementos})
     //console.log(id)
     //console.log(elementos.getElemsSize())
     res.render('new', {
         
+    })
+})
+
+router.post('/:id', (req, res) => {
+    let post = elementos.getElem(parseInt(req.params.id))
+    let {user, score, review} = req.body
+    let comentario = {user, score, review}
+    console.log(comentario)
+    console.log(post.subelementos)
+    post.subelementos.push(comentario)
+    console.log(post.subelementos)
+    console.log(post.subelementos.length)
+    res.render('elemento', {
+        post
     })
 })
 
