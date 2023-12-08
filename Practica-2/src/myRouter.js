@@ -44,6 +44,44 @@ router.get('/:id/delete', (req, res) => {
     })
 })
 
+router.get('/:id/edit', (req, res) => {
+    let post = elementos.getElem(parseInt(req.params.id))
+    let alergenos =[]
+    //console.log(post.alergenos)
+    post.alergenos.forEach(element => {
+        switch(element){
+            case "https://cdn.icon-icons.com/icons2/852/PNG/512/IconoAlergenoGluten-Gluten_icon-icons.com_67600.png": alergenos[0]=true; break;
+            case "https://cdn.icon-icons.com/icons2/852/PNG/512/IconoAlergenoHuevo-Egg_icon-icons.com_67598.png": alergenos[1]=true; break;
+            case "https://cdn.icon-icons.com/icons2/852/PNG/512/Fish_icon-icons.com_67594.png": alergenos[2]=true; break;
+            case "https://cdn.icon-icons.com/icons2/852/PNG/512/IconoAlergenoFrutosCascaraPeelFruits_icon-icons.com_67601.png": alergenos[3]=true; break;
+        }
+    });
+    //console.log(alergenos);
+    //console.log(post.isRosse)
+    res.render('modificar_elemento', {
+        post,
+        gluten:alergenos[0],
+        huevos:alergenos[1],
+        pescado:alergenos[2],
+        fcascara:alergenos[3]
+    })
+})
+
+router.post('/:id/:id/modify', (req, res) => {
+    let {gluten, huevos, pescado, fcascara} = req.body
+    let alergenos = [gluten, huevos, pescado, fcascara]
+    alergenos = alergenos.filter((elem) => elem!=undefined)
+    let {nombre, url, ingredientes, categoria} = req.body
+    let isRosse = (categoria === 'true')
+    console.log({id:parseInt(req.params.id), nombre: nombre, url:url, ingredientes:ingredientes, alergenos:alergenos, isRosse:isRosse})
+    elementos.addElem({id:parseInt(req.params.id), nombre: nombre, url:url, ingredientes:ingredientes, alergenos:alergenos, isRosse:isRosse})
+    //console.log(id)
+    //console.log(elementos.getElemsSize())
+    res.render('new', {
+        
+    })
+})
+
 //elementos.addElem({nombre: 'javier', url:'https://images.unsplash.com/photo-1628840042765-356cda07504e?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTh8fHxlbnwwfHx8fHw%3D', ingredientes:'abcd efgh ijk', descripcion:'hola, soy comida', vegetariano: 'a', celiaco: 'c', id:id})
 
 //elementos.addElem({nombre: 'jaer', url:'https://images.unsplash.com/photo-1628840042765-356cda07504e?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTh8fHxlbnwwfHx8fHw%3D', ingredientes:'abcd efghawfeaef// ijk', descripcion:'hola, soy', vegetariano: 'av', celiaco: 'c', id:id})
