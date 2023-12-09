@@ -2,8 +2,6 @@ import express from "express";                          //Los import que no se u
 import * as elementos from './pizzaService.js'
 //import * as elemento from './elemento.js'
 
-let id=0;
-
 const router = express.Router();
 
 router.get('/', (req, res) => {                         //router.get(ruta donde se va a imprimir la pagina html, funcion con el nombre de la pagina a modificar y que modifica la misma)
@@ -20,8 +18,8 @@ router.post('/new', (req, res) => {
     alergenos = alergenos.filter((elem) => elem!=undefined)
     let {nombre, url, ingredientes, categoria} = req.body
     let isRosse = (categoria === 'true')
-    elementos.addElem({id:id, nombre: nombre, url:url, ingredientes:ingredientes, alergenos:alergenos, isRosse:isRosse, subelementos:[]})
-    id++
+    let id = elementos.newId();
+    elementos.addElem({id:id, nombre:nombre, url:url, ingredientes:ingredientes, alergenos:alergenos, isRosse:isRosse, subelementos:[]})
     //console.log(id)
     //console.log(elementos.getElemsSize())
     res.render('new', {
