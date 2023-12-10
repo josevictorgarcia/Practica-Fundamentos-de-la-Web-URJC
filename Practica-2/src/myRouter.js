@@ -1,31 +1,43 @@
 import express from "express";                          //Los import que no se usen no hace falta incluirlos aunque uno dependa de otro
+import ExpressValidator from 'express-validator';
 import * as elementos from './pizzaService.js'
 //import * as elemento from './elemento.js'
 
 const router = express.Router();
+const { body, validationResult } = ExpressValidator;
 
 router.get('/', (req, res) => {                         //router.get(ruta donde se va a imprimir la pagina html, funcion con el nombre de la pagina a modificar y que modifica la misma)
     res.render('index', {
-        pizzas:elementos.getElems(),
+        pizzas: elementos.getElems(),
         //pizze_rosse_head: "",
         //pizze_rosse: elementos.getElemsCategoria("Rosse")
     })
 })
 
-router.post('/new', (req, res) => {
-    let {gluten, huevos, pescado, fcascara} = req.body
-    let alergenos = [gluten, huevos, pescado, fcascara]
-    alergenos = alergenos.filter((elem) => elem!=undefined)
-    let {nombre, url, ingredientes, categoria} = req.body
-    let isRosse = (categoria === 'true')
-    let id = elementos.newId();
-    elementos.addElem({id:id, nombre:nombre, url:url, ingredientes:ingredientes, alergenos:alergenos, isRosse:isRosse, subelementos:[]})
-    //console.log(id)
-    //console.log(elementos.getElemsSize())
-    res.render('new', {
-        
-    })
-})
+router.post(
+    '/new',
+    body('nombre').trim().notEmpty(),
+    body('url').trim().isURL(),
+    body('ingredientes').trim().notEmpty(),
+    (req, res) => {
+        if (validationResult(req).isEmpty()) {
+            let { gluten, huevos, pescado, fcascara } = req.body
+            let alergenos = [gluten, huevos, pescado, fcascara]
+            alergenos = alergenos.filter((elem) => elem != undefined)
+            let { nombre, url, ingredientes, categoria } = req.body
+            let isRosse = (categoria === 'true')
+            let id = elementos.newId();
+            elementos.addElem({ id: id, nombre: nombre, url: url, ingredientes: ingredientes, alergenos: alergenos, isRosse: isRosse, subelementos: [] })
+            //console.log(id)
+            //console.log(elementos.getElemsSize())
+            res.render('new', {
+
+            })
+        } else {
+            
+        }
+    }
+)
 
 router.get('/:id', (req, res) => {
     let post = elementos.getElem(parseInt(req.params.id))
@@ -44,47 +56,47 @@ router.get('/:id/delete', (req, res) => {
 
 router.get('/:id/edit', (req, res) => {
     let post = elementos.getElem(parseInt(req.params.id))
-    let alergenos =[]
+    let alergenos = []
     //console.log(post.alergenos)
     post.alergenos.forEach(element => {
-        switch(element){
-            case "https://cdn.icon-icons.com/icons2/852/PNG/512/IconoAlergenoGluten-Gluten_icon-icons.com_67600.png": alergenos[0]=true; break;
-            case "https://cdn.icon-icons.com/icons2/852/PNG/512/IconoAlergenoHuevo-Egg_icon-icons.com_67598.png": alergenos[1]=true; break;
-            case "https://cdn.icon-icons.com/icons2/852/PNG/512/Fish_icon-icons.com_67594.png": alergenos[2]=true; break;
-            case "https://cdn.icon-icons.com/icons2/852/PNG/512/IconoAlergenoFrutosCascaraPeelFruits_icon-icons.com_67601.png": alergenos[3]=true; break;
+        switch (element) {
+            case "https://cdn.icon-icons.com/icons2/852/PNG/512/IconoAlergenoGluten-Gluten_icon-icons.com_67600.png": alergenos[0] = true; break;
+            case "https://cdn.icon-icons.com/icons2/852/PNG/512/IconoAlergenoHuevo-Egg_icon-icons.com_67598.png": alergenos[1] = true; break;
+            case "https://cdn.icon-icons.com/icons2/852/PNG/512/Fish_icon-icons.com_67594.png": alergenos[2] = true; break;
+            case "https://cdn.icon-icons.com/icons2/852/PNG/512/IconoAlergenoFrutosCascaraPeelFruits_icon-icons.com_67601.png": alergenos[3] = true; break;
         }
     });
     //console.log(alergenos);
     //console.log(post.isRosse)
     res.render('modificar_elemento', {
         post,
-        gluten:alergenos[0],
-        huevos:alergenos[1],
-        pescado:alergenos[2],
-        fcascara:alergenos[3]
+        gluten: alergenos[0],
+        huevos: alergenos[1],
+        pescado: alergenos[2],
+        fcascara: alergenos[3]
     })
 })
 
 router.post('/:id/:id/modify', (req, res) => {
     let post = elementos.getElem(parseInt(req.params.id))
-    let {gluten, huevos, pescado, fcascara} = req.body
+    let { gluten, huevos, pescado, fcascara } = req.body
     let alergenos = [gluten, huevos, pescado, fcascara]
-    alergenos = alergenos.filter((elem) => elem!=undefined)
-    let {nombre, url, ingredientes, categoria} = req.body
+    alergenos = alergenos.filter((elem) => elem != undefined)
+    let { nombre, url, ingredientes, categoria } = req.body
     let isRosse = (categoria === 'true')
-    console.log({id:parseInt(req.params.id), nombre: nombre, url:url, ingredientes:ingredientes, alergenos:alergenos, isRosse:isRosse})
-    elementos.addElem({id:parseInt(req.params.id), nombre: nombre, url:url, ingredientes:ingredientes, alergenos:alergenos, isRosse:isRosse, subelementos:post.subelementos})
+    console.log({ id: parseInt(req.params.id), nombre: nombre, url: url, ingredientes: ingredientes, alergenos: alergenos, isRosse: isRosse })
+    elementos.addElem({ id: parseInt(req.params.id), nombre: nombre, url: url, ingredientes: ingredientes, alergenos: alergenos, isRosse: isRosse, subelementos: post.subelementos })
     //console.log(id)
     //console.log(elementos.getElemsSize())
     res.render('new', {
-        
+
     })
 })
 
 router.post('/:id', (req, res) => {
     let post = elementos.getElem(parseInt(req.params.id))
-    let {user, score, review} = req.body
-    let comentario = {user, score, review}
+    let { user, score, review } = req.body
+    let comentario = { user, score, review }
     //console.log(comentario)
     //console.log(post.subelementos)
     post.subelementos.push(comentario)
