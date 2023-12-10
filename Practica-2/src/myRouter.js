@@ -34,7 +34,7 @@ router.post(
 
             })
         } else {
-            
+
         }
     }
 )
@@ -77,21 +77,29 @@ router.get('/:id/edit', (req, res) => {
     })
 })
 
-router.post('/:id/:id/modify', (req, res) => {
-    let post = elementos.getElem(parseInt(req.params.id))
-    let { gluten, huevos, pescado, fcascara } = req.body
-    let alergenos = [gluten, huevos, pescado, fcascara]
-    alergenos = alergenos.filter((elem) => elem != undefined)
-    let { nombre, url, ingredientes, categoria } = req.body
-    let isRosse = (categoria === 'true')
-    console.log({ id: parseInt(req.params.id), nombre: nombre, url: url, ingredientes: ingredientes, alergenos: alergenos, isRosse: isRosse })
-    elementos.addElem({ id: parseInt(req.params.id), nombre: nombre, url: url, ingredientes: ingredientes, alergenos: alergenos, isRosse: isRosse, subelementos: post.subelementos })
-    //console.log(id)
-    //console.log(elementos.getElemsSize())
-    res.render('new', {
+router.post(
+    '/:id/:id/modify',
+    body('nombre').trim().notEmpty(),
+    body('url').trim().isURL(),
+    body('ingredientes').trim().notEmpty(),
+    (req, res) => {
+        if (validationResult(req).isEmpty()) {
+            let post = elementos.getElem(parseInt(req.params.id))
+            let { gluten, huevos, pescado, fcascara } = req.body
+            let alergenos = [gluten, huevos, pescado, fcascara]
+            alergenos = alergenos.filter((elem) => elem != undefined)
+            let { nombre, url, ingredientes, categoria } = req.body
+            let isRosse = (categoria === 'true')
+            console.log({ id: parseInt(req.params.id), nombre: nombre, url: url, ingredientes: ingredientes, alergenos: alergenos, isRosse: isRosse })
+            elementos.addElem({ id: parseInt(req.params.id), nombre: nombre, url: url, ingredientes: ingredientes, alergenos: alergenos, isRosse: isRosse, subelementos: post.subelementos })
+            //console.log(id)
+            //console.log(elementos.getElemsSize())
+            res.render('new', {
 
-    })
-})
+            })
+        }
+    }
+)
 
 router.post('/:id', (req, res) => {
     let post = elementos.getElem(parseInt(req.params.id))
