@@ -1,7 +1,7 @@
 //import * as elemento from './elemento.js';
 
 const elems = new Map()
-let id=0;
+let id = 0;
 
 export function newId() {
     id++;
@@ -19,8 +19,13 @@ let huevos = "https://cdn.icon-icons.com/icons2/852/PNG/512/IconoAlergenoHuevo-E
 
 addElem({
     id: newId(), nombre: "4 Formaggio", url: "https://sources-01.s3.eu-west-3.amazonaws.com/produccion/recursos/430/imagenes/fotos/articulos/PF4F.png",
-    ingredientes: "Salsa de tomate y nuestra mezcla especial de cuatro quesos.", alergenos: [gluten], isRosse: true, subelementos: []
+    ingredientes: "Salsa de tomate y nuestra mezcla especial de cuatro quesos.", alergenos: [gluten], isRosse: true,
+    subelementos: [
+        {user: "Anonymous User 1", score: "5", review: "La mejor pizza 4 quesos que he probado hasta el momento. Recomiendo a todo el mundo venir y probar esta pizza."},
+        {user: "Anonymous User 2", score: "0", review: "Asquerosa, no pude acabarla"}
+    ]
 });
+
 addElem({
     id: newId(), nombre: "Barbacoa de Pollo", url: "https://sources-01.s3.eu-west-3.amazonaws.com/produccion/recursos/430/imagenes/fotos/articulos/PFBB.png",
     ingredientes: "Salsa barbacoa, mozzarella, carne picada, bacon, pollo y extra de mozzarella.", alergenos: [gluten], isRosse: true, subelementos: []

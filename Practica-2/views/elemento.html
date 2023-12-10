@@ -24,8 +24,7 @@
                 <div class="row">
                     <h4>Alérgenos</h4>
                     {{#alergenos}}
-                    <img class="col-md-3 col-4"
-                        src="{{.}}">
+                    <img class="col-md-3 col-4" src="{{.}}">
                     {{/alergenos}}
                     {{^alergenos}}
                     <h4>No hay alergenos que mostrar</h4>
@@ -58,57 +57,54 @@
                 <input type="user" class="form-control" placeholder="Anonymous User" name="user">
             </div>
             <div class="col-md-6">
-                <label class="form-label">Review Score</label>
-                <input type="score" class="form-control" placeholder="0 - 5 stars" name="score">
+                <div class="row">
+                    <label class="form-label">Review Score</label>
+                </div>
+                <div style="margin-top: 1%;">
+                    <!--<input type="score" class="form-control" placeholder="0 - 5 stars" name="score">-->
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" id="a0" type="radio" name="score" value="0">
+                        <label class="form-check-label" for="a0">0</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" id="a1" type="radio" name="score" value="1">
+                        <label class="form-check-label" for="a1">1</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" id="a2" type="radio" name="score" value="2">
+                        <label class="form-check-label" for="a2">2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" id="a3" type="radio" name="score" value="3">
+                        <label class="form-check-label" for="a3">3</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" id="a4" type="radio" name="score" value="4">
+                        <label class="form-check-label" for="a4">4</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" id="a5" type="radio" name="score" value="5" checked>
+                        <label class="form-check-label" for="a5">5</label>
+                    </div>
+                </div>
             </div>
             <div class="col-12">
                 <label class="form-label">Review</label>
-                <textarea type="review" class="form-control" rows="5" placeholder="Your review" name="review"></textarea>
+                <textarea type="review" class="form-control" rows="5" placeholder="Your review"
+                    name="review"></textarea>
             </div>
             <div class="col-12">
                 <button type="submit" class="btn btn-primary">Publish</button>
             </div>
         </form>
-        <!--Ejemplo sublemento-->
-        <div class="col-md-12"
-            style="margin-top: 30px; border-top-style: double; border-bottom-style: double; text-align: justify;">
-            <h4>Anonymous User</h4>
-            <h4>
-                5 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star"
-                    viewBox="0 0 16 16">
-                    <path
-                        d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
-                </svg>
-            </h4>
-            <div>
-                La mejor pizza 4 quesos que he probado hasta el momento. Recomiendo a todo el mundo venir y experimentar
-                el sabor de esta pizza desde su propia persona.
-            </div>
-        </div>
-        <!--Ejemplo subelemento 2-->
-        <div class="col-md-12"
-            style="margin-top: 30px; border-top-style: double; border-bottom-style: double; text-align: justify;">
-            <h4>Anonymous User 2</h4>
-            <h4>
-                0 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star"
-                    viewBox="0 0 16 16">
-                    <path
-                        d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
-                </svg>
-            </h4>
-            <div>
-                Todo mal.
-            </div>
-        </div>
-        <!--Fin ejemplos subelementos-->
-        <!--Subelementos añadidos-->
+        <!--Subelementos-->
         {{#subelementos}}
         <div class="col-md-12"
             style="margin-top: 30px; border-top-style: double; border-bottom-style: double; text-align: justify;">
             <h4>{{user}}</h4>
             <h4>
-                {{score}} <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star"
-                    viewBox="0 0 16 16">
+                {{score}} <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-star" viewBox="0 0 16 16">
                     <path
                         d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
                 </svg>
@@ -118,7 +114,7 @@
             </div>
         </div>
         {{/subelementos}}
-        <!--Fin subelementos añadidos-->
+        <!--Fin subelementos-->
     </div>
     {{/post}}
 </body>

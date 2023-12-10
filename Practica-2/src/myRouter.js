@@ -85,11 +85,11 @@ router.post('/:id', (req, res) => {
     let post = elementos.getElem(parseInt(req.params.id))
     let {user, score, review} = req.body
     let comentario = {user, score, review}
-    console.log(comentario)
-    console.log(post.subelementos)
+    //console.log(comentario)
+    //console.log(post.subelementos)
     post.subelementos.push(comentario)
-    console.log(post.subelementos)
-    console.log(post.subelementos.length)
+    //console.log(post.subelementos)
+    //console.log(post.subelementos.length)
     res.render('elemento', {
         post
     })
@@ -102,6 +102,7 @@ router.post('/:id', (req, res) => {
 //elementos.addElem({nombre: 'avie', url:'https://images.unsplash.com/photo-1628840042765-356cda07504e?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTh8fHxlbnwwfHx8fHw%3D', ingredientes:'abc ijk', descripcion:'hola, comida', vegetariano: 'a', celiaco: 'cv', id:id})
 
 //console.log([...elems.values()]);
-console.log(elementos.getElems());
+
+//console.log(elementos.getElems());
 
 export default router;
