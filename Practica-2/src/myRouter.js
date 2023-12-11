@@ -1,16 +1,13 @@
 import express from "express";                          //Los import que no se usen no hace falta incluirlos aunque uno dependa de otro
 import ExpressValidator from 'express-validator';
 import * as elementos from './pizzaService.js'
-//import * as elemento from './elemento.js'
 
 const router = express.Router();
 const { body, validationResult } = ExpressValidator;
 
 router.get('/', (req, res) => {                         //router.get(ruta donde se va a imprimir la pagina html, funcion con el nombre de la pagina a modificar y que modifica la misma)
     res.render('index', {
-        pizzas: elementos.getElems(),
-        //pizze_rosse_head: "",
-        //pizze_rosse: elementos.getElemsCategoria("Rosse")
+        pizzas: elementos.getElems()
     })
 })
 
@@ -42,7 +39,8 @@ router.post(
             res.render('message', {
                 message1: 'Se ha ',
                 bolded:'añadido',
-                message2: 'el elemento con éxito'
+                message2: ' el elemento con éxito',
+                back: '/'
             })
         } else {
 
@@ -58,16 +56,17 @@ router.get('/:id', (req, res) => {
     })
 })
 
-router.get('/:id/delete', (req, res) => {
+router.post('/:id/delete', (req, res) => {
     elementos.remove(parseInt(req.params.id))
     res.render('message', {
         message1: 'Elemento ',
         bolded: 'eliminado',
-        message2: ' de la lista correctamente'
+        message2: ' de la lista correctamente',
+        back: '/'
     })
 })
 
-router.get('/:id/edit', (req, res) => {
+router.post('/:id/edit', (req, res) => {
     let post = elementos.getElem(parseInt(req.params.id))
     let alergenos = []
     //console.log(post.alergenos)
@@ -112,7 +111,8 @@ router.post(
             res.render('message', {
                 message1: 'Se han ',
                 bolded: 'guardado',
-                message2: ' los cambios con éxito'
+                message2: ' los cambios con éxito',
+                back: '/' + post.id
             })
         }
     }
