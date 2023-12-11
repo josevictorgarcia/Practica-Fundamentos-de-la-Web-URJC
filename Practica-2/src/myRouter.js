@@ -41,7 +41,7 @@ router.post(
 
 router.get('/:id', (req, res) => {
     let post = elementos.getElem(parseInt(req.params.id))
-    console.log(post)
+    //console.log(post)
     res.render('elemento', {
         post
     })
@@ -51,6 +51,15 @@ router.get('/:id/delete', (req, res) => {
     elementos.remove(parseInt(req.params.id))
     res.render('deleted', {
 
+    })
+})
+
+router.post('/create', (req, res) => {
+    let post = {id: -1, nombre: "", url: "", ingredientes: "", alergenos: [], isRosse: true, subelementos: []}
+    res.render('formulario_elemento', {
+        title: 'CREAR PLATO NUEVO',
+        action: '/new',
+        post
     })
 })
 
@@ -68,7 +77,9 @@ router.get('/:id/edit', (req, res) => {
     });
     //console.log(alergenos);
     //console.log(post.isRosse)
-    res.render('modificar_elemento', {
+    res.render('formulario_elemento', {
+        title: 'MODIFICAR PLATO',
+        action: post.id + '/modify',
         post,
         gluten: alergenos[0],
         huevos: alergenos[1],
