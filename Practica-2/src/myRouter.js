@@ -14,6 +14,15 @@ router.get('/', (req, res) => {                         //router.get(ruta donde 
     })
 })
 
+router.post('/create', (req, res) => {
+    let post = {id: -1, nombre: "", url: "", ingredientes: "", alergenos: [], isRosse: true, subelementos: []}
+    res.render('formulario_elemento', {
+        title: 'CREAR PLATO NUEVO',
+        action: '/new',
+        post
+    })
+})
+
 router.post(
     '/new',
     body('nombre').trim().notEmpty(),
@@ -30,8 +39,10 @@ router.post(
             elementos.addElem({ id: id, nombre: nombre, url: url, ingredientes: ingredientes, alergenos: alergenos, isRosse: isRosse, subelementos: [] })
             //console.log(id)
             //console.log(elementos.getElemsSize())
-            res.render('new', {
-
+            res.render('message', {
+                message1: 'Se ha ',
+                bolded:'añadido',
+                message2: 'el elemento con éxito'
             })
         } else {
 
@@ -49,17 +60,10 @@ router.get('/:id', (req, res) => {
 
 router.get('/:id/delete', (req, res) => {
     elementos.remove(parseInt(req.params.id))
-    res.render('deleted', {
-
-    })
-})
-
-router.post('/create', (req, res) => {
-    let post = {id: -1, nombre: "", url: "", ingredientes: "", alergenos: [], isRosse: true, subelementos: []}
-    res.render('formulario_elemento', {
-        title: 'CREAR PLATO NUEVO',
-        action: '/new',
-        post
+    res.render('message', {
+        message1: 'Elemento ',
+        bolded: 'eliminado',
+        message2: ' de la lista correctamente'
     })
 })
 
@@ -105,8 +109,10 @@ router.post(
             elementos.addElem({ id: parseInt(req.params.id), nombre: nombre, url: url, ingredientes: ingredientes, alergenos: alergenos, isRosse: isRosse, subelementos: post.subelementos })
             //console.log(id)
             //console.log(elementos.getElemsSize())
-            res.render('new', {
-
+            res.render('message', {
+                message1: 'Se han ',
+                bolded: 'guardado',
+                message2: ' los cambios con éxito'
             })
         }
     }
