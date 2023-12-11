@@ -12,7 +12,7 @@ router.get('/', (req, res) => {                         //router.get(ruta donde 
 })
 
 router.post('/create', (req, res) => {
-    let post = {id: -1, nombre: "", url: "", ingredientes: "", alergenos: [], isRosse: true, subelementos: []}
+    let post = { id: -1, nombre: "", url: "", ingredientes: "", alergenos: [], isRosse: true, subelementos: [] }
     res.render('formulario_elemento', {
         title: 'CREAR PLATO NUEVO',
         action: '/new',
@@ -38,12 +38,21 @@ router.post(
             //console.log(elementos.getElemsSize())
             res.render('message', {
                 message1: 'Se ha ',
-                bolded:'añadido',
+                bolded: 'añadido',
                 message2: ' el elemento con éxito',
                 back: '/'
             })
         } else {
-
+            let invalids = '';
+            validationResult(req).array().forEach(error => {
+                invalids += ' ' + error.path
+            });
+            res.render('message', {
+                message1: 'Los siguientes campos son inválidos:',
+                bolded: invalids,
+                message2: '.',
+                back: '/'
+            })
         }
     }
 )
@@ -80,7 +89,7 @@ router.post('/:id/edit', (req, res) => {
     });
     //console.log(alergenos);
     //console.log(post.isRosse)
-    console.log(post.id)
+    //console.log(post.id)
     res.render('formulario_elemento', {
         title: 'MODIFICAR PLATO',
         action: 'modify',
@@ -98,14 +107,14 @@ router.post(
     body('url').trim().isURL(),
     body('ingredientes').trim().notEmpty(),
     (req, res) => {
+        let post = elementos.getElem(parseInt(req.params.id))
         if (validationResult(req).isEmpty()) {
-            let post = elementos.getElem(parseInt(req.params.id))
             let { gluten, huevos, pescado, fcascara } = req.body
             let alergenos = [gluten, huevos, pescado, fcascara]
             alergenos = alergenos.filter((elem) => elem != undefined)
             let { nombre, url, ingredientes, categoria } = req.body
             let isRosse = (categoria === 'true')
-            console.log({ id: parseInt(req.params.id), nombre: nombre, url: url, ingredientes: ingredientes, alergenos: alergenos, isRosse: isRosse })
+            //console.log({ id: parseInt(req.params.id), nombre: nombre, url: url, ingredientes: ingredientes, alergenos: alergenos, isRosse: isRosse })
             elementos.addElem({ id: parseInt(req.params.id), nombre: nombre, url: url, ingredientes: ingredientes, alergenos: alergenos, isRosse: isRosse, subelementos: post.subelementos })
             //console.log(id)
             //console.log(elementos.getElemsSize())
@@ -115,23 +124,51 @@ router.post(
                 message2: ' los cambios con éxito',
                 back: '/' + post.id
             })
+        } else {
+            let invalids = '';
+            validationResult(req).array().forEach(error => {
+                invalids += ' ' + error.path
+            });
+            res.render('message', {
+                message1: 'Los siguientes campos son inválidos:',
+                bolded: invalids,
+                message2: '.',
+                back: '/' + post.id
+            })
         }
     }
 )
 
-router.post('/:id', (req, res) => {
-    let post = elementos.getElem(parseInt(req.params.id))
-    let { user, score, review } = req.body
-    let comentario = { user, score, review }
-    //console.log(comentario)
-    //console.log(post.subelementos)
-    post.subelementos.push(comentario)
-    //console.log(post.subelementos)
-    //console.log(post.subelementos.length)
-    res.render('elemento', {
-        post
+router.post(
+    '/:id',
+    body('user').trim().notEmpty(),
+    body('review').trim(),
+    (req, res) => {
+        let post = elementos.getElem(parseInt(req.params.id))
+        if (validationResult(req).isEmpty()) {
+            let { user, score, review } = req.body
+            let comentario = { user, score, review }
+            //console.log(comentario)
+            //console.log(post.subelementos)
+            post.subelementos.push(comentario)
+            //console.log(post.subelementos)
+            //console.log(post.subelementos.length)
+            res.render('elemento', {
+                post
+            })
+        } else {
+            let invalids = '';
+            validationResult(req).array().forEach(error => {
+                invalids += ' ' + error.path
+            });
+            res.render('message', {
+                message1: 'Los siguientes campos son inválidos:',
+                bolded: invalids,
+                message2: '.',
+                back: '/' + post.id
+            })
+        }
     })
-})
 
 //elementos.addElem({nombre: 'javier', url:'https://images.unsplash.com/photo-1628840042765-356cda07504e?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTh8fHxlbnwwfHx8fHw%3D', ingredientes:'abcd efgh ijk', descripcion:'hola, soy comida', vegetariano: 'a', celiaco: 'c', id:id})
 
