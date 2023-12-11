@@ -72,7 +72,7 @@ addElem({
 });
 
 export function getElems() {
-    return [...elems.values()].sort((a, b) => (a < b ? 1 : -1));
+    return [...elems.values()].sort((a, b) => (a.nombre > b.nombre ? 1 : -1));
 }
 
 //export function getElems(){
