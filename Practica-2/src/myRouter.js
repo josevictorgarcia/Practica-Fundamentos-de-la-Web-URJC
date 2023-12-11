@@ -80,9 +80,10 @@ router.post('/:id/edit', (req, res) => {
     });
     //console.log(alergenos);
     //console.log(post.isRosse)
+    console.log(post.id)
     res.render('formulario_elemento', {
         title: 'MODIFICAR PLATO',
-        action: post.id + '/modify',
+        action: 'modify',
         post,
         gluten: alergenos[0],
         huevos: alergenos[1],
@@ -92,7 +93,7 @@ router.post('/:id/edit', (req, res) => {
 })
 
 router.post(
-    '/:id/:id/modify',
+    '/:id/modify',
     body('nombre').trim().notEmpty(),
     body('url').trim().isURL(),
     body('ingredientes').trim().notEmpty(),
