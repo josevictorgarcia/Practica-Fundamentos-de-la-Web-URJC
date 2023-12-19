@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link type="text/css" rel="stylesheet" href="style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"> </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="col-md-12" style="text-align: center;">
+            <h1 class="display-1">{{title}}</h1>
+        </div>
+        <form action="{{action}}" method="post">
+            {{#post}}
+            <div class="form-group" style="margin-top: 20px;">
+                <label>Nombre</label>
+                <input type="text" name="nombre" class="form-control" value="{{nombre}}" placeholder="Escriba el nombre del plato">
+            </div>
+            <div class="form-group" style="margin-top: 20px;">
+                <label>URL</label>
+                <input type="text" name="url" class="form-control" value="{{url}}" placeholder="URL de la imagen a mostrar">
+            </div>
+            <div class="form-group" style="margin-top: 20px;">
+                <label>Ingredientes</label>
+                <textarea class="form-control" name="ingredientes" rows="3">{{ingredientes}}</textarea>
+            </div>
+            <!--Alergenos-->
+                <label style="padding-right: 2%;">Alérgenos:</label>
+                <div class="form-check form-check-inline" style="margin-top: 20px;">
+                    <input class="form-check-input" id="a1" type="checkbox" name="gluten" {{ #gluten }} checked {{ /gluten }}
+                        value="https://cdn.icon-icons.com/icons2/852/PNG/512/IconoAlergenoGluten-Gluten_icon-icons.com_67600.png">
+                    <label class="form-check-label" for="a1">Gluten</label>
+                </div>
+                <div class="form-check form-check-inline" style="margin-top: 20px;">
+                    <input class="form-check-input" id="a2" type="checkbox" name="huevos" {{ #huevos }} checked {{ /huevos }}
+                        value="https://cdn.icon-icons.com/icons2/852/PNG/512/IconoAlergenoHuevo-Egg_icon-icons.com_67598.png">
+                    <label class="form-check-label" for="a2">Huevos</label>
+                </div>
+                <div class="form-check form-check-inline" style="margin-top: 20px;">
+                    <input class="form-check-input" id="a3" type="checkbox" name="pescado" {{ #pescado }} checked {{ /pescado }}
+                        value="https://cdn.icon-icons.com/icons2/852/PNG/512/Fish_icon-icons.com_67594.png">
+                    <label class="form-check-label" for="a3">Pescado</label>
+                </div>
+                <div class="form-check form-check-inline" style="margin-top: 20px;">
+                    <input class="form-check-input" id="a4" type="checkbox" name="fcascara" {{ #fcascara }} checked {{ /fcascara }}
+                        value="https://cdn.icon-icons.com/icons2/852/PNG/512/IconoAlergenoFrutosCascaraPeelFruits_icon-icons.com_67601.png">
+                    <label class="form-check-label" for="a4">Frutos de cáscara</label>
+                </div>
+            <!--Fin alergenos-->
+            <div class="form-group" style="margin-top: 20px;">
+                <label>Categoría</label>
+                <select name="categoria" class="form-select">
+                    <!--<option selected>Elige una categoría...</option>-->
+                    <option value="true" {{ #isRosse }} selected {{ /isRosse }}>Pizze Rosse</option>
+                    <option value="false" {{ ^isRosse }} selected {{ /isRosse }}>Pizze Bianca</option>
+                </select>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-success" style="margin-top: 20px;">Guardar</button>
+                <a role="button" class="btn btn-danger" href="javascript: history.go(-1)" style="margin-top: 20px;">Cancelar</a>
+            </div>
+            {{/post}}
+        </form>
+    </div>
+</body>
+
+</html>
