@@ -22,18 +22,19 @@ router.get('/create', (req, res) => {
 
 router.post(
     '/new',
-    body('nombre').trim().notEmpty(),
-    body('url').trim().isURL(),
-    body('ingredientes').trim().notEmpty(),
+    //body('nombre').trim().notEmpty(),
+    //body('url').trim().isURL(),
+    //body('ingredientes').trim().notEmpty(),
     (req, res) => {
-        if (validationResult(req).isEmpty()) {
-            let { gluten, huevos, pescado, fcascara } = req.body
-            let alergenos = [gluten, huevos, pescado, fcascara]
-            alergenos = alergenos.filter((elem) => elem != undefined)
-            let { nombre, url, ingredientes, categoria } = req.body
-            let isRosse = (categoria === 'true')
+        //if (validationResult(req).isEmpty()) {
+            let form_values = JSON.parse(req.body.form_values)
+            //let { gluten, huevos, pescado, fcascara } = req.body
+            let alergenos = form_values[3]
+            //alergenos = alergenos.filter((elem) => elem != undefined)
+            //let { nombre, url, ingredientes, categoria } = req.body
+            let isRosse = (form_values[4] === 'true')
             let id = elementos.newId();
-            elementos.addElem({ id: id, nombre: nombre, url: url, ingredientes: ingredientes, alergenos: alergenos, isRosse: isRosse, subelementos: [] })
+            elementos.addElem({ id: id, nombre: form_values[0], url: form_values[1], ingredientes: form_values[2], alergenos: alergenos, isRosse: isRosse, subelementos: [] })
             //console.log(id)
             //console.log(elementos.getElemsSize())
             res.render('message', {
@@ -42,7 +43,7 @@ router.post(
                 message2: ' el elemento con éxito',
                 back: '/'
             })
-        } else {
+        /*} else {
             let invalids = '';
             validationResult(req).array().forEach(error => {
                 invalids += ' ' + error.path
@@ -53,7 +54,7 @@ router.post(
                 message2: '.',
                 back: '/'
             })
-        }
+        }*/
     }
 )
 
