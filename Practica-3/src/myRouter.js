@@ -41,7 +41,7 @@ router.post(
                 message1: 'Se ha ',
                 bolded: 'añadido',
                 message2: ' el elemento con éxito',
-                back: '/'
+                back: -1
             })
         /*} else {
             let invalids = '';
@@ -72,11 +72,11 @@ router.post('/:id/delete', (req, res) => {
         message1: 'Elemento ',
         bolded: 'eliminado',
         message2: ' de la lista correctamente',
-        back: '/'
+        back: '-1'
     })
 })
 
-router.post('/:id/edit', (req, res) => {
+router.get('/:id/edit', (req, res) => {
     let post = elementos.getElem(parseInt(req.params.id))
     let alergenos = []
     //console.log(post.alergenos)
@@ -104,28 +104,32 @@ router.post('/:id/edit', (req, res) => {
 
 router.post(
     '/:id/modify',
-    body('nombre').trim().notEmpty(),
-    body('url').trim().isURL(),
-    body('ingredientes').trim().notEmpty(),
+    //body('nombre').trim().notEmpty(),
+    //body('url').trim().isURL(),
+    //body('ingredientes').trim().notEmpty(),
     (req, res) => {
+        let form_values = JSON.parse(req.body.form_values)
+        let id = parseInt(JSON.parse(req.body.id))
         let post = elementos.getElem(parseInt(req.params.id))
-        if (validationResult(req).isEmpty()) {
-            let { gluten, huevos, pescado, fcascara } = req.body
-            let alergenos = [gluten, huevos, pescado, fcascara]
-            alergenos = alergenos.filter((elem) => elem != undefined)
-            let { nombre, url, ingredientes, categoria } = req.body
-            let isRosse = (categoria === 'true')
+        //if (validationResult(req).isEmpty()) {
+            //let { gluten, huevos, pescado, fcascara } = req.body
+            let alergenos = form_values[3]
+            //let alergenos = [gluten, huevos, pescado, fcascara]
+            //alergenos = alergenos.filter((elem) => elem != undefined)
+            //let { nombre, url, ingredientes, categoria } = req.body
+            //let isRosse = (categoria === 'true')
+            let isRosse = (form_values[4] === 'true')
             //console.log({ id: parseInt(req.params.id), nombre: nombre, url: url, ingredientes: ingredientes, alergenos: alergenos, isRosse: isRosse })
-            elementos.addElem({ id: parseInt(req.params.id), nombre: nombre, url: url, ingredientes: ingredientes, alergenos: alergenos, isRosse: isRosse, subelementos: post.subelementos })
+            elementos.addElem({ id: id, nombre: form_values[0], url: form_values[1], ingredientes: form_values[2], alergenos: alergenos, isRosse: isRosse, subelementos: post.subelementos })
             //console.log(id)
             //console.log(elementos.getElemsSize())
             res.render('message', {
                 message1: 'Se han ',
                 bolded: 'guardado',
                 message2: ' los cambios con éxito',
-                back: '/' + post.id
+                back: id
             })
-        } else {
+        /*} else {
             let invalids = '';
             validationResult(req).array().forEach(error => {
                 invalids += ' ' + error.path
@@ -136,7 +140,7 @@ router.post(
                 message2: '.',
                 back: '/' + post.id
             })
-        }
+        }*/
     }
 )
 
