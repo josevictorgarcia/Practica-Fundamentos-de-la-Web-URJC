@@ -116,3 +116,16 @@ export function getPizzas(rosse, bianca){   //Devuelve las rosse primeras pizzas
     })
     return pizzasAImprimir;
 }
+
+export function searchElems(input){
+    let pizzas = getElems();
+    let pizzasAImprimir = [];
+    //console.log(input)
+    pizzas.forEach((elem) => {
+        if (elem.nombre.includes(input)){
+            pizzasAImprimir.push(elem);
+        }
+    })
+
+    return pizzasAImprimir;
+}

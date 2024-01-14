@@ -26,6 +26,16 @@ router.get('/pizzas', (req, res) => {
     })
 })
 
+router.get('/search', (req, res) => {
+    let input = req.query.input;
+
+    let pizzas = elementos.searchElems(input);
+    
+    res.render('index', {
+        pizzas: pizzas
+    })
+})
+
 router.get('/create', (req, res) => {
     let post = { id: -1, nombre: "", url: "", ingredientes: "", alergenos: [], isRosse: true, subelementos: [] }
     res.render('formulario_elemento', {

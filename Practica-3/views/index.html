@@ -17,68 +17,14 @@
                 <img src="https://images.vexels.com/media/users/3/128437/isolated/preview/2dd809b7c15968cb7cc577b2cb49c84f-pizza-restaurante-restaurante-de-comida.png"
                     style="width: 10vw;">
             </div>
-            <div class="col-8">
-                <div class="container" style="background-color: rgb(0, 0, 0, 0.7);">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="d-grid gap-">
-                                <button id="dropdownmenubar" type="button" class="btn dropdown-toggle"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <a style="color: rgba(239, 174, 22, 1);">Entrantes</a>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownmenubar"
-                                    style="background-color: rgba(239, 174, 22, 1); text-align: center;">
-                                    <li><a class="dropdown-item" href="index.html" id="dropdownmenu">Entrantes</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="d-grid gap-">
-                                <button id="dropdownmenubar" type="button" class="btn dropdown-toggle"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <a style="color: rgba(239, 174, 22, 1);;">Nuestros Platos</a>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownmenubar"
-                                    style="background-color: rgba(239, 174, 22, 1); text-align: center;">
-                                    <li><a class="dropdown-item" href="index.html" id="dropdownmenu">Pasta clasica</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="index.html" id="dropdownmenu">Pizzas</a></li>
-                                    <li><a class="dropdown-item" href="index.html" id="dropdownmenu">Platos
-                                            tradicionales</a></li>
-                                    <li><a class="dropdown-item" href="index.html" id="dropdownmenu">Pasta rellena</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="d-grid gap-">
-                                <button id="dropdownmenubar" type="button" class="btn dropdown-toggle"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <a style="color: rgba(239, 174, 22, 1);">Postres</a>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownmenubar"
-                                    style="background-color: rgba(239, 174, 22, 1); text-align: center;">
-                                    <li><a class="dropdown-item" href="index.html" id="dropdownmenu">Postres</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="d-grid gap-">
-                                <button id="dropdownmenubar" type="button" class="btn dropdown-toggle"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <a style="color: rgba(239, 174, 22, 1);">About us</a>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownmenubar"
-                                    style="background-color: rgba(239, 174, 22, 1); text-align: center;">
-                                    <li><a class="dropdown-item" href="https://www.pizzeriascarlos.es/comida-a-domicilio-nuestra-carta" id="dropdownmenu">Nuestra
-                                            historia</a></li>
-                                    <li><a class="dropdown-item" href="index.html" id="dropdownmenu">Contacto</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+            <!--Search Bar-->
+            <div class="col-8" style="margin-top: 30px;">
+                <div class="input-group">
+                    <input id="searchInput" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                    <button type="button" onclick="search()" class="btn btn-outline-primary" data-mdb-ripple-init>search</button>
                 </div>
             </div>
+            <!--End of Search Bar-->
         </div>
         <div>
             <div class="texto">

@@ -155,9 +155,22 @@ async function deleteelement(param){
     let id = parseInt(param)
 
     const response = await fetch(`/${id}/delete`);
-    const newHtml = await response.text();
+    //const newHtml = await response.text();
 
     location.href = "/";
 
     console.log("Elemento borrado");
+}
+
+async function search(){
+    const string = document.getElementById("searchInput").value;
+
+    const response = await fetch(`/search?input=${string}`);
+    const newHtml = await response.text();
+
+    const ventanaPrincipal = document.getElementById("main");
+    ventanaPrincipal.innerHTML = newHtml;
+
+    numPizzasRosse = 3;                         //Estas dos ultimas lineas para asegurarnos de que si se anade o se modifica un nuevo elemento, habria que volver a pulsar el boton de "ver mas" para cargar nuevos elementos de tres en tres
+    numPizzasBianca = 3;
 }
