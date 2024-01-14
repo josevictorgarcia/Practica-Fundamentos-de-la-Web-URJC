@@ -1,3 +1,6 @@
+let numPizzasRosse = 3
+let numPizzasBianca = 3
+
 async function modal(){
 
     const response = await fetch(`/create`);
@@ -118,6 +121,29 @@ async function submitElement(param){
         const ventanaNuevoElem = document.getElementById("modal");
         ventanaNuevoElem.innerHTML = newHtml;
 
-        console.log("Elemento creado correctamente");
+        console.log("Elemento modificado correctamente");
     }
+
+    numPizzasRosse = 3;                         //Estas dos ultimas lineas para asegurarnos de que si se anade o se modifica un nuevo elemento, habria que volver a pulsar el boton de "ver mas" para cargar nuevos elementos de tres en tres
+    numPizzasBianca = 3;
+}
+
+async function loadMoreRosse(){
+    numPizzasRosse += 3;
+
+    const response = await fetch(`/pizzas?rosse=${numPizzasRosse}&bianca=${numPizzasBianca}`);
+    const newHtml = await response.text();
+
+    const ventanaNuevoElem = document.getElementById("main");
+    ventanaNuevoElem.innerHTML = newHtml;
+}
+
+async function loadMoreBianca(){
+    numPizzasBianca += 3;
+
+    const response = await fetch(`/pizzas?rosse=${numPizzasRosse}&bianca=${numPizzasBianca}`);
+    const newHtml = await response.text();
+
+    const ventanaNuevoElem = document.getElementById("main");
+    ventanaNuevoElem.innerHTML = newHtml;
 }

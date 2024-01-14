@@ -6,8 +6,23 @@ const router = express.Router();
 const { body, validationResult } = ExpressValidator;
 
 router.get('/', (req, res) => {                         //router.get(ruta donde se va a imprimir la pagina html, funcion con el nombre de la pagina a modificar y que modifica la misma)
+    
+    const pizzas = elementos.getPizzas(3, 3);                     //getPizzas(pizzasRosse, pizzasBianca) devuelve en este caso 3 pizzas rosse y 3 pizzas bianca (6 pizzas en total)
+
     res.render('index', {
-        pizzas: elementos.getElems()
+        //pizzas: elementos.getElems()
+        pizzas: pizzas
+    })
+})
+
+router.get('/pizzas', (req, res) => {
+    const rosse = parseInt(req.query.rosse)
+    const bianca = parseInt(req.query.bianca)
+
+    const pizzas = elementos.getPizzas(rosse, bianca);
+
+    res.render('index', {
+        pizzas: pizzas
     })
 })
 
