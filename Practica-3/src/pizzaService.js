@@ -101,17 +101,17 @@ export function getElem(id) {
 //console.log(elems.size)
 //console.log([...elems.values(0)])
 
-export function getPizzas(rosse, bianca){   //Devuelve las rosse primeras pizzas rosse que se encuentre en el array de pizzas y las bianca primeras pizzas bianca
+export function getPizzas(nRosse, nBianca){   //Devuelve las nRosse primeras pizzas rosse que se encuentre en el array de pizzas y las nBianca primeras pizzas bianca
     let pizzas = getElems();
     let pizzasAImprimir = []
     pizzas.forEach((elem) => {
-        if(rosse != 0 && elem.isRosse){
+        if(nRosse != 0 && elem.isRosse){
             pizzasAImprimir.push(elem);
-            rosse--;
+            nRosse--;
         }
-        else if(bianca != 0 && !elem.isRosse){
+        else if(nBianca != 0 && !elem.isRosse){
             pizzasAImprimir.push(elem);
-            bianca--;
+            nBianca--;
         }
     })
     return pizzasAImprimir;

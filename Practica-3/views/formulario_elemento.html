@@ -14,17 +14,19 @@
             <h1 class="display-1">{{title}}</h1>
         </div>
         <!--<form action="{{action}}" method="post">-->
+        <form class="needs-validation">
             {{#post}}
             <div class="form-group" style="margin-top: 20px;">
-                <label>Nombre</label>
-                <input type="text" id="nombre" class="form-control" value="{{nombre}}" placeholder="Escriba el nombre del plato">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" id="nombre" class="form-control" value="{{nombre}}" placeholder="Escriba el nombre del plato" required>
+                <div class="invalid-tooltip">Debes elegir un nombre que no se repita</div>
             </div>
             <div class="form-group" style="margin-top: 20px;">
-                <label>URL</label>
+                <label for="url" class="form-label">URL</label>
                 <input type="text" id="url" class="form-control" value="{{url}}" placeholder="URL de la imagen a mostrar">
             </div>
             <div class="form-group" style="margin-top: 20px;">
-                <label>Ingredientes</label>
+                <label for="ingredientes" class="form-label">Ingredientes</label>
                 <textarea class="form-control" id="ingredientes" rows="3">{{ingredientes}}</textarea>
             </div>
             <!--Alergenos-->
@@ -32,26 +34,26 @@
                 <div class="form-check form-check-inline" style="margin-top: 20px;">
                     <input class="form-check-input" type="checkbox" id="gluten" {{ #gluten }} checked {{ /gluten }}
                         value="https://cdn.icon-icons.com/icons2/852/PNG/512/IconoAlergenoGluten-Gluten_icon-icons.com_67600.png">
-                    <label class="form-check-label" for="a1">Gluten</label>
+                    <label class="form-check-label" for="gluten">Gluten</label>
                 </div>
                 <div class="form-check form-check-inline" style="margin-top: 20px;">
                     <input class="form-check-input" type="checkbox" id="huevos" {{ #huevos }} checked {{ /huevos }}
                         value="https://cdn.icon-icons.com/icons2/852/PNG/512/IconoAlergenoHuevo-Egg_icon-icons.com_67598.png">
-                    <label class="form-check-label" for="a2">Huevos</label>
+                    <label class="form-check-label" for="huevos">Huevos</label>
                 </div>
                 <div class="form-check form-check-inline" style="margin-top: 20px;">
                     <input class="form-check-input" type="checkbox" id="pescado" {{ #pescado }} checked {{ /pescado }}
                         value="https://cdn.icon-icons.com/icons2/852/PNG/512/Fish_icon-icons.com_67594.png">
-                    <label class="form-check-label" for="a3">Pescado</label>
+                    <label class="form-check-label" for="pescado">Pescado</label>
                 </div>
                 <div class="form-check form-check-inline" style="margin-top: 20px;">
                     <input class="form-check-input" type="checkbox" id="fcascara" {{ #fcascara }} checked {{ /fcascara }}
                         value="https://cdn.icon-icons.com/icons2/852/PNG/512/IconoAlergenoFrutosCascaraPeelFruits_icon-icons.com_67601.png">
-                    <label class="form-check-label" for="a4">Frutos de cáscara</label>
+                    <label class="form-check-label" for="fcascara">Frutos de cáscara</label>
                 </div>
             <!--Fin alergenos-->
             <div class="form-group" style="margin-top: 20px;">
-                <label>Categoría</label>
+                <label for="categoria" class="form-label">Categoría</label>
                 <select id="categoria" class="form-select">
                     <!--<option selected>Elige una categoría...</option>-->
                     <option value="true" {{ #isRosse }} selected {{ /isRosse }}>Pizze Rosse</option>
@@ -64,6 +66,7 @@
             </div>
             {{/post}}
         <!--</form>-->
+        </form>
     </div>
 </body>
 
