@@ -81,13 +81,13 @@ router.get('/:id', (req, res) => {
     })
 })
 
-router.post('/:id/delete', (req, res) => {
+router.get('/:id/delete', (req, res) => {
     elementos.remove(parseInt(req.params.id))
     res.render('message', {
         message1: 'Elemento ',
         bolded: 'eliminado',
         message2: ' de la lista correctamente',
-        back: '-1'
+        back: -1
     })
 })
 

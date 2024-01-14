@@ -54,6 +54,9 @@ async function closemodal(param){
     pagPrincipal.innerHTML = newHTML;
 
     console.log("Modal cerrado");
+
+    numPizzasRosse = 3;                         //Estas dos ultimas lineas para asegurarnos de que si se anade o se modifica un nuevo elemento, habria que volver a pulsar el boton de "ver mas" para cargar nuevos elementos de tres en tres
+    numPizzasBianca = 3;
 }
 
 function getId(a){
@@ -146,4 +149,15 @@ async function loadMoreBianca(){
 
     const ventanaNuevoElem = document.getElementById("main");
     ventanaNuevoElem.innerHTML = newHtml;
+}
+
+async function deleteelement(param){
+    let id = parseInt(param)
+
+    const response = await fetch(`/${id}/delete`);
+    const newHtml = await response.text();
+
+    location.href = "/";
+
+    console.log("Elemento borrado");
 }
