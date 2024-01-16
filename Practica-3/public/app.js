@@ -67,7 +67,26 @@ function getCheck(a){
     return document.getElementById(a).checked;
 }
 
+async function validarFormulario(param){
+    document.getElementById("formulario").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent form submission if validation fails
+        event.stopPropagation(); // Stop the event from propagating further
+        var form = event.target;
+        if (form.checkValidity() === false) {
+            console.log("Fallo en la validacion");
+        }
+        else{
+            console.log("No hubo fallos en la validacion");
+            submitElement(param);
+        }
+        form.classList.add("was-validated"); // Add 'was-validated' class to enable Bootstrap's styling
+    }, false);
+}
+
 async function submitElement(param){
+
+    //validarFormulario();
+
     let id = parseInt(param);
 
     let alergenos = [getId("gluten"), getId("huevos"), getId("pescado"), getId("fcascara")]

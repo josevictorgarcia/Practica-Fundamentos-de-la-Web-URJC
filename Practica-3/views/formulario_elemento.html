@@ -14,12 +14,12 @@
             <h1 class="display-1">{{title}}</h1>
         </div>
         <!--<form action="{{action}}" method="post">-->
-        <form class="needs-validation">
+        <form id="formulario" class="needs-validation" novalidate>
             {{#post}}
-            <div class="form-group" style="margin-top: 20px;">
+            <div class="was-validated" style="margin-top: 20px;">
                 <label for="nombre" class="form-label">Nombre</label>
                 <input type="text" id="nombre" class="form-control" value="{{nombre}}" placeholder="Escriba el nombre del plato" required>
-                <div class="invalid-tooltip">Debes elegir un nombre que no se repita</div>
+                <div class="invalid-feedback">Debes elegir un nombre que no se repita</div>
             </div>
             <div class="form-group" style="margin-top: 20px;">
                 <label for="url" class="form-label">URL</label>
@@ -61,7 +61,7 @@
                 </select>
             </div>
             <div>
-                <button class="btn btn-success" onclick="submitElement('{{id}}')" style="margin-top: 20px;">Guardar</button>
+                <button type="submit" class="btn btn-success" style="margin-top: 20px;" onclick="validarFormulario('{{id}}')">Guardar</button>
                 <a role="button" class="btn btn-danger" onclick="closemodal('{{id}}')" style="margin-top: 20px;">Cancelar</a>
             </div>
             {{/post}}
