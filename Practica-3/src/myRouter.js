@@ -94,7 +94,7 @@ router.get('/create', (req, res) => {
     let post = { id: -1, nombre: "", url: "", ingredientes: "", alergenos: [], isRosse: true, subelementos: [] }
     res.render('formulario_elemento', {
         title: 'CREAR PLATO NUEVO',
-        action: '/new',
+        //action: '/new',
         post
     })
 })

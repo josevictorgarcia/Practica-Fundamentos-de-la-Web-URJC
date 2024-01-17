@@ -119,25 +119,24 @@ async function validateForm(param) {
     var nombre = document.getElementById('nombre').value.trim();
     var url = document.getElementById('url').value.trim();
     var ingredientes = document.getElementById('ingredientes').value.trim();
+    console.log(ingredientes.length)
 
     document.getElementById("formulario").classList.add("was-validated");
 
     if (nombre !== '' && /^[A-ZÁÉÍÓÚÑ0-9]/.test(nombre[0])) {
-        isImgUrl(url, function(result) {
-            if (result) {            
-                if (50 <= ingredientes.length <= 500) {
+        if (ingredientes.length >= 50 && ingredientes.length <= 500) {
+            isImgUrl(url, function (result) {
+                if (result) {
                     submitElement(param);
                 } else {
-                    console.log("Fallo ingredientes");
+                    console.log("Fallo url");
                 }
-            } else {
-                console.log("Fallo url");
-            }
-        });
+            });
+        } else {
+            console.log("Fallo ingredientes");
+        }
     } else {
         console.log("Fallo nombre");
-        nombre.classList.remove("is-valid");
-        nombre.classList.add("is-invalid");
     }
 }
 
@@ -282,7 +281,7 @@ async function search() {
 async function filter() {
     let alergenos = ["https://cdn.icon-icons.com/icons2/852/PNG/512/IconoAlergenoGluten-Gluten_icon-icons.com_67600.png", "https://cdn.icon-icons.com/icons2/852/PNG/512/IconoAlergenoHuevo-Egg_icon-icons.com_67598.png",
         "https://cdn.icon-icons.com/icons2/852/PNG/512/Fish_icon-icons.com_67594.png", "https://cdn.icon-icons.com/icons2/852/PNG/512/IconoAlergenoFrutosCascaraPeelFruits_icon-icons.com_67601.png"];
-    let checks = [getCheck("gluten"), getCheck("huevos"), getCheck("pescado"), getCheck("fcascara")];
+    let checks = [getCheck("glutenf"), getCheck("huevosf"), getCheck("pescadof"), getCheck("fcascaraf")];
 
     for (let index = 0; index < 4; index++) {
         if (!checks[index]) {
