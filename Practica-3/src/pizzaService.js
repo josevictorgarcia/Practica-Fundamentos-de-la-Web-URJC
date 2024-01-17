@@ -21,8 +21,8 @@ addElem({
     id: newId(), nombre: "4 Formaggio", url: "https://sources-01.s3.eu-west-3.amazonaws.com/produccion/recursos/430/imagenes/fotos/articulos/PF4F.png",
     ingredientes: "Salsa de tomate y nuestra mezcla especial de cuatro quesos.", alergenos: [gluten], isRosse: true,
     subelementos: [
-        {user: "Anonymous User 1", score: "5", review: "La mejor pizza 4 quesos que he probado hasta el momento. Recomiendo a todo el mundo venir y probar esta pizza."},
-        {user: "Anonymous User 2", score: "0", review: "Asquerosa, no pude acabarla"}
+        { user: "Anonymous User 1", score: "5", review: "La mejor pizza 4 quesos que he probado hasta el momento. Recomiendo a todo el mundo venir y probar esta pizza." },
+        { user: "Anonymous User 2", score: "0", review: "Asquerosa, no pude acabarla" }
     ]
 });
 
@@ -79,9 +79,9 @@ export function getElems() {
 //    return [...elems.values()].sort(compareNames)
 //}
 
-//export function getElemsCategoria(categoria){
-//    getElems().filter((elem) => elem.getCategoria() === categoria)
-//}
+export function getElemsCategoria(categoria) {
+    return getElems().filter((elem) => elem.isRosse === categoria)
+}
 
 export function getElemsSize() {
     return elems.size;
@@ -101,6 +101,24 @@ export function getElem(id) {
 //console.log(elems.size)
 //console.log([...elems.values(0)])
 
+export function getRosse(from, to) {
+    let pizzas = getElemsCategoria(true);
+    if (from !== undefined) {
+        return pizzas.slice(from, to);
+    } else {
+        return pizzas;
+    }
+}
+
+export function getBianca(from, to) {
+    let pizzas = getElemsCategoria(false);
+    if (from !== undefined) {
+        return pizzas.slice(from, to);
+    } else {
+        return pizzas;
+    }
+}
+/*
 export function getPizzas(nRosse, nBianca){   //Devuelve las nRosse primeras pizzas rosse que se encuentre en el array de pizzas y las nBianca primeras pizzas bianca
     let pizzas = getElems();
     let pizzasAImprimir = []
@@ -116,16 +134,29 @@ export function getPizzas(nRosse, nBianca){   //Devuelve las nRosse primeras piz
     })
     return pizzasAImprimir;
 }
-
-export function searchElems(input){
-    let pizzas = getElems();
+*/
+export function searchElemsRosse(input) {
+    let pizzas = getElemsCategoria(true);
     let pizzasAImprimir = [];
     //console.log(input)
     pizzas.forEach((elem) => {
-        if (elem.nombre.includes(input)){
+        if (elem.nombre.includes(input)) {
             pizzasAImprimir.push(elem);
         }
     })
 
+    return pizzasAImprimir;
+}
+
+export function searchElemsBianca(input) {
+    let pizzas = getElemsCategoria(false);
+    let pizzasAImprimir = [];
+    //console.log(input)
+    pizzas.forEach((elem) => {
+        if (elem.nombre.includes(input)) {
+            pizzasAImprimir.push(elem);
+        }
+    })
+    
     return pizzasAImprimir;
 }

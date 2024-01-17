@@ -7,14 +7,37 @@ const { body, validationResult } = ExpressValidator;
 
 router.get('/', (req, res) => {                         //router.get(ruta donde se va a imprimir la pagina html, funcion con el nombre de la pagina a modificar y que modifica la misma)
     
-    const pizzas = elementos.getPizzas(3, 3);                     //getPizzas(pizzasRosse, pizzasBianca) devuelve en este caso 3 pizzas rosse y 3 pizzas bianca (6 pizzas en total)
+    //const pizzas = elementos.getPizzas(3, 3);                     //getPizzas(pizzasRosse, pizzasBianca) devuelve en este caso 3 pizzas rosse y 3 pizzas bianca (6 pizzas en total)
 
     res.render('index', {
         //pizzas: elementos.getElems()
+        //pizzas: pizzas
+    })
+})
+
+router.get('/pizzasRosse', (req, res) => {
+    const from = parseInt(req.query.from)
+    const to = parseInt(req.query.to)
+
+    const pizzas = elementos.getRosse(from, to);
+
+    res.render('pizza_card', {
         pizzas: pizzas
     })
 })
 
+router.get('/pizzasBianca', (req, res) => {
+    const from = parseInt(req.query.from)
+    const to = parseInt(req.query.to)
+
+    const pizzas = elementos.getBianca(from, to);
+
+    res.render('pizza_card', {
+        pizzas: pizzas
+    })
+})
+
+/*
 router.get('/pizzas', (req, res) => {
     const rosse = parseInt(req.query.rosse)
     const bianca = parseInt(req.query.bianca)
@@ -25,13 +48,24 @@ router.get('/pizzas', (req, res) => {
         pizzas: pizzas
     })
 })
+*/
 
-router.get('/search', (req, res) => {
+router.get('/searchRosse', (req, res) => {
     let input = req.query.input;
 
-    let pizzas = elementos.searchElems(input);
+    let pizzas = elementos.searchElemsRosse(input);
     
-    res.render('index', {
+    res.render('pizza_card', {
+        pizzas: pizzas
+    })
+})
+
+router.get('/searchBianca', (req, res) => {
+    let input = req.query.input;
+
+    let pizzas = elementos.searchElemsBianca(input);
+    
+    res.render('pizza_card', {
         pizzas: pizzas
     })
 })
