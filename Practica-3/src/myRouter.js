@@ -249,7 +249,7 @@ router.post(
                 message1: 'Los siguientes campos son inválidos:',
                 bolded: invalids,
                 message2: '.',
-                back: '/' + post.id
+                back: req.params.id
             })
         }
     })
