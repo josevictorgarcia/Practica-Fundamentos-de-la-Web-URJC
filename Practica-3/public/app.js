@@ -230,3 +230,30 @@ async function search() {
     document.getElementById("loadR").style.visibility = "hidden";
     document.getElementById("loadB").style.visibility = "hidden";
 }
+
+async function filter() {
+    let alergenos = ["https://cdn.icon-icons.com/icons2/852/PNG/512/IconoAlergenoGluten-Gluten_icon-icons.com_67600.png", "https://cdn.icon-icons.com/icons2/852/PNG/512/IconoAlergenoHuevo-Egg_icon-icons.com_67598.png",
+                        "https://cdn.icon-icons.com/icons2/852/PNG/512/Fish_icon-icons.com_67594.png", "https://cdn.icon-icons.com/icons2/852/PNG/512/IconoAlergenoFrutosCascaraPeelFruits_icon-icons.com_67601.png"];
+    let checks = [getCheck("gluten"), getCheck("huevos"), getCheck("pescado"), getCheck("fcascara")];
+
+    for (let index = 0; index < 4; index++) {
+        if (!checks[index]) {
+            alergenos[index] = null;
+        }
+    }
+    alergenos = alergenos.filter(elem => elem != null)
+
+    const responseRosse = await fetch(`/filterRosse?filter=${alergenos}`);
+    const newHtmlRosse = await responseRosse.text();
+    
+    const responseBianca = await fetch(`/filterBianca?filter=${alergenos}`);
+    const newHtmlBianca = await responseBianca.text();
+
+    const pizzasRosse = document.getElementById("Rosse");
+    pizzasRosse.innerHTML = newHtmlRosse;
+    const pizzasBianca = document.getElementById("Bianca");
+    pizzasBianca.innerHTML = newHtmlBianca;
+
+    document.getElementById("loadR").style.visibility = "hidden";
+    document.getElementById("loadB").style.visibility = "hidden";
+}

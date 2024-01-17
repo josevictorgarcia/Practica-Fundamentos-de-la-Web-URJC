@@ -157,6 +157,35 @@ export function searchElemsBianca(input) {
             pizzasAImprimir.push(elem);
         }
     })
-    
+
+    return pizzasAImprimir;
+}
+
+export function filterElemsRosse(filter) {
+    let pizzas = getElemsCategoria(true);
+    let pizzasAImprimir = [];
+    pizzas.forEach((elem) => {
+        let alergenoscomunes = elem.alergenos.filter(alergeno => filter.includes(alergeno));
+        if (alergenoscomunes.length == 0) {
+            pizzasAImprimir.push(elem);
+        }
+    })
+
+    return pizzasAImprimir;
+}
+
+export function filterElemsBianca(filter) {
+    console.log(filter)
+    let pizzas = getElemsCategoria(false);
+    let pizzasAImprimir = [];
+    pizzas.forEach((elem) => {
+        let alergenoscomunes = elem.alergenos.filter(alergeno => filter.includes(alergeno));
+        console.log(elem.alergenos)
+        console.log(alergenoscomunes)
+        if (alergenoscomunes.length == 0) {
+            pizzasAImprimir.push(elem);
+        }
+    })
+
     return pizzasAImprimir;
 }

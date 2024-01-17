@@ -70,6 +70,26 @@ router.get('/searchBianca', (req, res) => {
     })
 })
 
+router.get('/filterRosse', (req, res) => {
+    let filter = req.query.filter;
+
+    let pizzas = elementos.filterElemsRosse(filter);
+    
+    res.render('pizza_card', {
+        pizzas: pizzas
+    })
+})
+
+router.get('/filterBianca', (req, res) => {
+    let filter = req.query.filter;
+
+    let pizzas = elementos.filterElemsBianca(filter);
+    
+    res.render('pizza_card', {
+        pizzas: pizzas
+    })
+})
+
 router.get('/create', (req, res) => {
     let post = { id: -1, nombre: "", url: "", ingredientes: "", alergenos: [], isRosse: true, subelementos: [] }
     res.render('formulario_elemento', {
