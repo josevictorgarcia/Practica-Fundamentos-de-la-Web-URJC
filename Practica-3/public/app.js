@@ -17,6 +17,20 @@ async function modal() {
 
     console.log("Modal ejecutado");
     //const newSuperheroes = await response.text();
+    const form = document.getElementById("formulario");
+    form.addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent form submission if validation fails
+        event.stopPropagation(); // Stop the event from propagating further
+        var form = event.target;
+        if (form.checkValidity() === false) {
+            console.log("Fallo en la validacion");
+        }
+        else {
+            console.log("No hubo fallos en la validacion");
+            //submitElement(param);
+        }
+        form.classList.add("was-validated");
+    }, false);
 }
 
 async function modaleditelement(id) {
@@ -34,7 +48,21 @@ async function modaleditelement(id) {
     document.body.disabled = true;
 
     console.log("Modal ejecutado");
-    //const newSuperheroes = await response.text();
+    //const newSuperheroes = await response.text()const form = document.getElementById("formulario")
+    const form = document.getElementById("formulario");
+    form.addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent form submission if validation fails
+        event.stopPropagation(); // Stop the event from propagating further
+        var form = event.target;
+        if (form.checkValidity() === false) {
+            console.log("Fallo en la validacion");
+        }
+        else {
+            console.log("No hubo fallos en la validacion");
+            //submitElement(param);
+        }
+        form.classList.add("was-validated");
+    }, false);;
 }
 
 async function closemodal(param) {
@@ -69,8 +97,8 @@ function getId(a) {
 function getCheck(a) {
     return document.getElementById(a).checked;
 }
-
-async function validarFormulario(param) {
+/*
+async function validarFormulario() {
     const form = document.getElementById("formulario")
     form.addEventListener("submit", function (event) {
         event.preventDefault(); // Prevent form submission if validation fails
@@ -83,21 +111,41 @@ async function validarFormulario(param) {
             console.log("No hubo fallos en la validacion");
             submitElement(param);
         }
-        form.classList.add("was-validated"); // Add 'was-validated' class to enable Bootstrap's styling
+        form.classList.add("was-validated");
     }, false);
+}*/
+
+async function validateForm(param) {
+    var nombre = document.getElementById('nombre').value.trim();
+    var url = document.getElementById('url').value.trim();
+    var ingredientes = document.getElementById('ingredientes').value.trim();
+
+    document.getElementById("formulario").classList.add("was-validated");
+
+    if (nombre !== '' && /^[A-ZÁÉÍÓÚÑ0-9]/.test(nombre[0])) {
+        isImgUrl(url, function(result) {
+            if (result) {            
+                if (50 <= ingredientes.length <= 500) {
+                    submitElement(param);
+                } else {
+                    console.log("Fallo ingredientes");
+                }
+            } else {
+                console.log("Fallo url");
+            }
+        });
+    } else {
+        console.log("Fallo nombre");
+        nombre.classList.remove("is-valid");
+        nombre.classList.add("is-invalid");
+    }
 }
 
-async function isValidName(name) {
-    
-}
-
-async function isImgUrl(url) {
+function isImgUrl(url, callback) {
     const img = new Image();
     img.src = url;
-    return new Promise((resolve) => {
-        img.onload = () => resolve(true);
-        img.onerror = () => resolve(false);
-    });
+    img.onload = () => callback(true);
+    img.onerror = () => callback(false);
 }
 
 async function submitElement(param) {
@@ -233,7 +281,7 @@ async function search() {
 
 async function filter() {
     let alergenos = ["https://cdn.icon-icons.com/icons2/852/PNG/512/IconoAlergenoGluten-Gluten_icon-icons.com_67600.png", "https://cdn.icon-icons.com/icons2/852/PNG/512/IconoAlergenoHuevo-Egg_icon-icons.com_67598.png",
-                        "https://cdn.icon-icons.com/icons2/852/PNG/512/Fish_icon-icons.com_67594.png", "https://cdn.icon-icons.com/icons2/852/PNG/512/IconoAlergenoFrutosCascaraPeelFruits_icon-icons.com_67601.png"];
+        "https://cdn.icon-icons.com/icons2/852/PNG/512/Fish_icon-icons.com_67594.png", "https://cdn.icon-icons.com/icons2/852/PNG/512/IconoAlergenoFrutosCascaraPeelFruits_icon-icons.com_67601.png"];
     let checks = [getCheck("gluten"), getCheck("huevos"), getCheck("pescado"), getCheck("fcascara")];
 
     for (let index = 0; index < 4; index++) {
@@ -245,7 +293,7 @@ async function filter() {
 
     const responseRosse = await fetch(`/filterRosse?filter=${alergenos}`);
     const newHtmlRosse = await responseRosse.text();
-    
+
     const responseBianca = await fetch(`/filterBianca?filter=${alergenos}`);
     const newHtmlBianca = await responseBianca.text();
 

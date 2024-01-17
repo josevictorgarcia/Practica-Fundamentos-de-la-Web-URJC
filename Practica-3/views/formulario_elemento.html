@@ -14,43 +14,47 @@
             <h1 class="display-1">{{title}}</h1>
         </div>
         <!--<form action="{{action}}" method="post">-->
-        <form id="formulario" class="needs-validation" novalidate>
+        <form id="formulario" novalidate>
             {{#post}}
-            <div class="was-validated" style="margin-top: 20px;">
+            <div class="form-group position-relative" style="margin-top: 20px;">
                 <label for="nombre" class="form-label">Nombre</label>
-                <input type="text" id="nombre" class="form-control" value="{{nombre}}" placeholder="Escriba el nombre del plato" required>
-                <div class="invalid-feedback">Debes elegir un nombre que no se repita</div>
+                <input type="text" id="nombre" class="form-control" value="{{nombre}}"
+                    placeholder="Escriba el nombre de la pizza" required>
+                <div class="invalid-tooltip">Escribe un nombre que empiece por mayúsculas o un número</div>
             </div>
-            <div class="form-group" style="margin-top: 20px;">
+            <div class="form-group position-relative" style="margin-top: 20px;">
                 <label for="url" class="form-label">URL</label>
-                <input type="text" id="url" class="form-control" value="{{url}}" placeholder="URL de la imagen a mostrar">
+                <input type="text" id="url" class="form-control" value="{{url}}"
+                    placeholder="URL de la imagen a mostrar" required>
+                <div class="invalid-tooltip">No es una URL válida</div>
             </div>
-            <div class="form-group" style="margin-top: 20px;">
+            <div class="form-group position-relative" style="margin-top: 20px;">
                 <label for="ingredientes" class="form-label">Ingredientes</label>
-                <textarea class="form-control" id="ingredientes" rows="3">{{ingredientes}}</textarea>
+                <textarea class="form-control" id="ingredientes" rows="3" required>{{ingredientes}}</textarea>
+                <div class="invalid-tooltip">Escribe los ingredientes (50 - 500 caracteres)</div>
             </div>
             <!--Alergenos-->
-                <label style="padding-right: 2%;">Alérgenos:</label>
-                <div class="form-check form-check-inline" style="margin-top: 20px;">
-                    <input class="form-check-input" type="checkbox" id="gluten" {{ #gluten }} checked {{ /gluten }}
-                        value="https://cdn.icon-icons.com/icons2/852/PNG/512/IconoAlergenoGluten-Gluten_icon-icons.com_67600.png">
-                    <label class="form-check-label" for="gluten">Gluten</label>
-                </div>
-                <div class="form-check form-check-inline" style="margin-top: 20px;">
-                    <input class="form-check-input" type="checkbox" id="huevos" {{ #huevos }} checked {{ /huevos }}
-                        value="https://cdn.icon-icons.com/icons2/852/PNG/512/IconoAlergenoHuevo-Egg_icon-icons.com_67598.png">
-                    <label class="form-check-label" for="huevos">Huevos</label>
-                </div>
-                <div class="form-check form-check-inline" style="margin-top: 20px;">
-                    <input class="form-check-input" type="checkbox" id="pescado" {{ #pescado }} checked {{ /pescado }}
-                        value="https://cdn.icon-icons.com/icons2/852/PNG/512/Fish_icon-icons.com_67594.png">
-                    <label class="form-check-label" for="pescado">Pescado</label>
-                </div>
-                <div class="form-check form-check-inline" style="margin-top: 20px;">
-                    <input class="form-check-input" type="checkbox" id="fcascara" {{ #fcascara }} checked {{ /fcascara }}
-                        value="https://cdn.icon-icons.com/icons2/852/PNG/512/IconoAlergenoFrutosCascaraPeelFruits_icon-icons.com_67601.png">
-                    <label class="form-check-label" for="fcascara">Frutos de cáscara</label>
-                </div>
+            <label style="padding-right: 2%;">Alérgenos:</label>
+            <div class="form-check form-check-inline" style="margin-top: 20px;">
+                <input class="form-check-input" type="checkbox" id="gluten" {{ #gluten }} checked {{ /gluten }}
+                    value="https://cdn.icon-icons.com/icons2/852/PNG/512/IconoAlergenoGluten-Gluten_icon-icons.com_67600.png">
+                <label class="form-check-label" for="gluten">Gluten</label>
+            </div>
+            <div class="form-check form-check-inline" style="margin-top: 20px;">
+                <input class="form-check-input" type="checkbox" id="huevos" {{ #huevos }} checked {{ /huevos }}
+                    value="https://cdn.icon-icons.com/icons2/852/PNG/512/IconoAlergenoHuevo-Egg_icon-icons.com_67598.png">
+                <label class="form-check-label" for="huevos">Huevos</label>
+            </div>
+            <div class="form-check form-check-inline" style="margin-top: 20px;">
+                <input class="form-check-input" type="checkbox" id="pescado" {{ #pescado }} checked {{ /pescado }}
+                    value="https://cdn.icon-icons.com/icons2/852/PNG/512/Fish_icon-icons.com_67594.png">
+                <label class="form-check-label" for="pescado">Pescado</label>
+            </div>
+            <div class="form-check form-check-inline" style="margin-top: 20px;">
+                <input class="form-check-input" type="checkbox" id="fcascara" {{ #fcascara }} checked {{ /fcascara }}
+                    value="https://cdn.icon-icons.com/icons2/852/PNG/512/IconoAlergenoFrutosCascaraPeelFruits_icon-icons.com_67601.png">
+                <label class="form-check-label" for="fcascara">Frutos de cáscara</label>
+            </div>
             <!--Fin alergenos-->
             <div class="form-group" style="margin-top: 20px;">
                 <label for="categoria" class="form-label">Categoría</label>
@@ -61,11 +65,13 @@
                 </select>
             </div>
             <div>
-                <button type="submit" class="btn btn-success" style="margin-top: 20px;" onclick="validarFormulario('{{id}}')">Guardar</button>
-                <a role="button" class="btn btn-danger" onclick="closemodal('{{id}}')" style="margin-top: 20px;">Cancelar</a>
+                <button type="submit" class="btn btn-success" onclick="validateForm('{{id}}')"
+                    style="margin-top: 20px;">Guardar</button>
+                <a role="button" class="btn btn-danger" onclick="closemodal('{{id}}')"
+                    style="margin-top: 20px;">Cancelar</a>
             </div>
             {{/post}}
-        <!--</form>-->
+            <!--</form>-->
         </form>
     </div>
 </body>

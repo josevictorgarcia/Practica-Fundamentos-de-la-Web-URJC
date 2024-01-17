@@ -140,7 +140,7 @@ export function searchElemsRosse(input) {
     let pizzasAImprimir = [];
     //console.log(input)
     pizzas.forEach((elem) => {
-        if (elem.nombre.includes(input)) {
+        if (elem.nombre.toUpperCase().includes(input.toUpperCase())) {
             pizzasAImprimir.push(elem);
         }
     })
@@ -153,7 +153,7 @@ export function searchElemsBianca(input) {
     let pizzasAImprimir = [];
     //console.log(input)
     pizzas.forEach((elem) => {
-        if (elem.nombre.includes(input)) {
+        if (elem.nombre.toUpperCase().includes(input.toUpperCase())) {
             pizzasAImprimir.push(elem);
         }
     })
@@ -175,13 +175,10 @@ export function filterElemsRosse(filter) {
 }
 
 export function filterElemsBianca(filter) {
-    console.log(filter)
     let pizzas = getElemsCategoria(false);
     let pizzasAImprimir = [];
     pizzas.forEach((elem) => {
         let alergenoscomunes = elem.alergenos.filter(alergeno => filter.includes(alergeno));
-        console.log(elem.alergenos)
-        console.log(alergenoscomunes)
         if (alergenoscomunes.length == 0) {
             pizzasAImprimir.push(elem);
         }
